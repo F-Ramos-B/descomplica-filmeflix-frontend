@@ -1,29 +1,69 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { MenubarModule } from 'primeng/menubar';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { StyleClassModule } from 'primeng/styleclass';
 import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
+import { LoginComponent } from './pages/public/login/login.component';
+import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
+import { AuthGuard } from './guards/auth.guard';
+import { MessageService } from 'primeng/api';
+
+export function tokenGetter() {
+  return localStorage.getItem('jwttoken');
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    PaginaNaoEncontradaComponent,
+    MensagemValidacaoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     StyleClassModule,
     FormsModule,
+    MenubarModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastModule,
-    AppRoutingModule
+    AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+      },
+    }),
+    CardModule,
+    MessagesModule,
+    MessageModule,
+    ButtonModule
   ],
-  providers: [],
+  providers: [
+    HttpInterceptorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+    AuthGuard,
+    MessageService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

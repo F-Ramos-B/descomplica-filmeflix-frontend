@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { BaseComponent } from './../shared/base.component';
 import { EnumTipoUsuario } from 'src/app/enums/enum-tipo-usuario.model';
+import { UsuarioToken } from 'src/app/models/usuario-token';
+import { TipoUsuarioPipe } from 'src/app/pipes/tipo-usuario.pipe';
 
 @Component({
   selector: 'app-header',
