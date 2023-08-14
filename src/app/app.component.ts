@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastService } from './services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'descomplica-filmeflix-frontend';
+
+  constructor(
+    private toastService: ToastService,
+    private router: Router
+  ) {
+    this.toastService.init();
+  }
 }
