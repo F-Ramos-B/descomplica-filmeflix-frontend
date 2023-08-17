@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { BaseComponent } from './../shared/base.component';
 import { EnumTipoUsuario } from 'src/app/enums/enum-tipo-usuario.model';
-import { UsuarioToken } from 'src/app/models/usuario-token';
+import { Usuario } from 'src/app/models/usuario';
 import { TipoUsuarioPipe } from 'src/app/pipes/tipo-usuario.pipe';
 
 @Component({
@@ -21,7 +21,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   private readonly tipoUsuarioPipe = new TipoUsuarioPipe();
 
   menuItems: MenuItem[] = [];
-  usuario: UsuarioToken;
+  usuario: Usuario;
 
   constructor(
     private authService: AuthService,
@@ -40,7 +40,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   }
 
   isAdmin() {
-    return EnumTipoUsuario.is.ADMIN(this.usuario?.tipo);
+    return EnumTipoUsuario.is.ADMIN(this.usuario?.perfil);
   }
 
   buildMenu() {
@@ -51,7 +51,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         routerLink: ['']
       },
       {
-        label: `Área do ${this.tipoUsuarioPipe.transform(this.usuario?.tipo)}`,
+        label: `Área do ${this.tipoUsuarioPipe.transform(this.usuario?.perfil)}`,
         icon: 'pi pi-fw pi-id-card',
         items: [...this.buildAreaMenu(this.isAdmin())]
       },

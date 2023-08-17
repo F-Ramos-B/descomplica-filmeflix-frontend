@@ -8,6 +8,10 @@ import { FilmeFlixUtils } from '../utils/utils';
 })
 export abstract class BaseService {
 
+  protected readonly BASE_URL: string = 'http://localhost:8080/filmeflix';
+
+  protected abstract URL: string;
+
   constructor(protected http: HttpClient) { }
 
   protected construirQueryParams<T extends object>(params: Exclude<T, any[]>, httpParams: HttpParams = new HttpParams()): HttpParams {

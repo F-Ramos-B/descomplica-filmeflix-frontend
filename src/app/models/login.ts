@@ -1,7 +1,7 @@
-import { UsuarioToken } from './usuario-token';
+import { Usuario } from './usuario';
 
 export interface Login {
-  usuario: Partial<UsuarioToken>;
+  usuario: Partial<Usuario>;
   token: string;
   expires: number;
 }

@@ -4,23 +4,35 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { RatingModule } from 'primeng/rating';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { StyleClassModule } from 'primeng/styleclass';
+import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
+import { AuthGuard } from './guards/auth.guard';
+import { CadastroComponent } from './pages/public/cadastro/cadastro.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { TipoUsuarioPipe } from './pipes/tipo-usuario.pipe';
 import { HttpInterceptorService } from './services/http-interceptor.service';
-import { AuthGuard } from './guards/auth.guard';
-import { MessageService } from 'primeng/api';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -32,7 +44,9 @@ export function tokenGetter() {
     HeaderComponent,
     LoginComponent,
     PaginaNaoEncontradaComponent,
-    MensagemValidacaoComponent
+    MensagemValidacaoComponent,
+    TipoUsuarioPipe,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +66,19 @@ export function tokenGetter() {
     CardModule,
     MessagesModule,
     MessageModule,
-    ButtonModule
+    ButtonModule,
+    SelectButtonModule,
+    InputNumberModule,
+    CalendarModule,
+    InputTextModule,
+    MenubarModule,
+    TableModule,
+    ConfirmDialogModule,
+    DropdownModule,
+    InputTextareaModule,
+    CardModule,
+    RatingModule,
+    DialogModule
   ],
   providers: [
     HttpInterceptorService,

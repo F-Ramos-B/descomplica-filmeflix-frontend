@@ -1,0 +1,57 @@
+<div class="box">
+  <div class="grid p-fluid">
+    <form [formGroup]="formulario" (ngSubmit)="validate()">
+      <div class="col-12 tela-login">
+
+        <h1 class="text-center text-white">{{ idEdicao ? 'Editar' : 'Cadastrar' }} {{ perfil?.value | tipoUsuario | lowercase}}</h1>
+
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>
+          <input type="text" pInputText formControlName="nome" id="tx-nome" placeholder="Nome">
+          <app-mensagem-validacao formControlName="nome"></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>
+          <input type="text" pInputText formControlName="apelido" id="tx-apelido" placeholder="Apelido">
+          <app-mensagem-validacao formControlName="apelido"></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>
+          <input type="text" pInputText formControlName="genero" id="tx-genero" placeholder="Gênero">
+          <app-mensagem-validacao formControlName="genero"></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em class="pi pi-envelope"></em></span>
+          <input pInputText type="email" formControlName="email" id="tx-email" placeholder="E-mail">
+          <app-mensagem-validacao formControlName="email" alertType="warn" type="email" errorMessage="E-mail inválido"></app-mensagem-validacao>
+          <app-mensagem-validacao formControlName="email"></app-mensagem-validacao>
+        </div>
+
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><em class="pi pi-lock"></em></span>
+          <input type="password" formControlName="senha" pInputText id="pwd-senha" placeholder="Senha">
+          <app-mensagem-validacao formControlName="senha"></app-mensagem-validacao>
+        </div>
+
+
+        <div class="p-inputgroup p-my-3 p-field">
+          <span class="p-inputgroup-addon"><em class="pi pi-calendar"></em></span>
+
+          <p-calendar [maxDate]="dataMinima" placeholder="Data de nascimento" formControlName="dataNascimento"></p-calendar>
+          <app-mensagem-validacao formControlName="dataNascimento"></app-mensagem-validacao>
+        </div>
+
+        <hr />
+
+        <div class="grid">
+          <div class="col-6">
+            <p-button styleClass="p-button-raised" icon="pi pi-user-plus" type="submit" label="Cadastrar"></p-button>
+          </div>
+          <div class="col-6">
+            <p-button type="button" styleClass="p-button-raised p-button-secondary" icon="pi pi-times-circle" (onClick)="voltar()" label="Cancelar"></p-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

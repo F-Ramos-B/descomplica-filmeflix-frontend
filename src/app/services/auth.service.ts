@@ -5,17 +5,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
 import { Login } from '../models/login';
-import { UsuarioToken } from '../models/usuario-token';
+import { Usuario } from '../models/usuario';
 import { BaseService } from './base.service';
 
-const URL = 'http://localhost:3000/stefanini/auth';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService extends BaseService {
   nameToken: string = 'jwttoken';
-  usuario: UsuarioToken;
+  usuario: Usuario;
+
+  URL = this.BASE_URL + '/auth';
 
   constructor(private router: Router, protected override http: HttpClient, public jwtHelper: JwtHelperService) { super(http); }
 
@@ -24,17 +26,17 @@ export class AuthService extends BaseService {
     return !this.jwtHelper.isTokenExpired(token || undefined);
   }
 
-  getUsuario(): UsuarioToken {
+  getUsuario(): Usuario {
     this.usuario = JSON.parse(localStorage.getItem('user'));
     return this.usuario;
   }
 
-  setUsuario(usuario: UsuarioToken) {
+  setUsuario(usuario: Usuario) {
     localStorage.setItem('user', JSON.stringify(usuario));
   }
 
   auth(email: string, senha: string): Observable<Login> {
-    return this.http.post<Login>(URL, { email, senha });
+    return this.http.post<Login>(this.URL, { email, senha });
   }
 
   getToken(): string {
