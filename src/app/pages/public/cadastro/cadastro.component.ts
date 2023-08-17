@@ -7,13 +7,14 @@ import { EnumTipoUsuario } from '../../../enums/enum-tipo-usuario.model';
 import { AdminService } from '../../../services/admin.service';
 import { UsuarioService } from './../../../services/usuario.service';
 import { FormUtils } from './../../../utils/form-utils';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss']
 })
-export class CadastroComponent extends InclusaoBaseComponent implements OnInit {
+export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements OnInit {
 
   idTipoFixo: number;
   dataMinima = new Date();

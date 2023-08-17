@@ -7,7 +7,7 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root',
 })
-export abstract class CrudService<T> extends BaseService {
+export abstract class CrudService<T, U = any> extends BaseService {
 
   buscarPorId(id: number): Observable<T> {
     return this.http.get<T>(`${this.URL}/${id}`);
@@ -19,17 +19,20 @@ export abstract class CrudService<T> extends BaseService {
     });
   }
 
-  incluir(entity: T): Observable<Mensagem> {
-    return this.http.post<Mensagem>(this.URL, entity);
+  incluir(entity: T): Observable<Mensagem<U>> {
+    return this.http.post<Mensagem<U>>(this.incluirURL(), entity);
   }
 
-  editar(id: number, entity: T): Observable<Mensagem> {
-    return this.http.put<Mensagem>(`${this.URL}/${id}`, entity);
+  incluirURL(): string {
+    return this.URL;
   }
 
-  excluir(id: number): Observable<Mensagem> {
-    return this.http.delete<Mensagem>(`${this.URL}/${id}`);
+  editar(id: number, entity: T): Observable<Mensagem<U>> {
+    return this.http.put<Mensagem<U>>(`${this.URL}/${id}`, entity);
   }
 
+  excluir(id: number): Observable<Mensagem<U>> {
+    return this.http.delete<Mensagem<U>>(`${this.URL}/${id}`);
+  }
 
 }

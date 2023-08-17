@@ -1,5 +1,5 @@
-export default class Mensagem {
+export default class Mensagem<T = any> {
   mensagem: string;
-  data?: any;
-  code?: number;
+  data?: T;
+  dataHora?: string;
 }

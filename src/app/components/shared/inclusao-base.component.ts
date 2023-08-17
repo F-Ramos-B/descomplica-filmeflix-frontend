@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { PrivateBaseComponent } from './private-base.component';
 
 @Injectable()
-export abstract class InclusaoBaseComponent extends PrivateBaseComponent {
+export abstract class InclusaoBaseComponent<T = any> extends PrivateBaseComponent {
 
   public idEdicao: number;
   public abstract formulario: FormGroup;
@@ -24,7 +24,7 @@ export abstract class InclusaoBaseComponent extends PrivateBaseComponent {
   protected abstract editar(): void;
   public abstract voltar(): void;
 
-  protected confirmarOperacao(resposta: Mensagem): void {
+  protected confirmarOperacao(resposta: Mensagem<T>): void {
     this.toastSucesso(resposta.mensagem);
     this.voltar();
   }

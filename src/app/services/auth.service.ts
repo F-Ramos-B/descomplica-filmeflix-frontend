@@ -36,7 +36,7 @@ export class AuthService extends BaseService {
   }
 
   auth(email: string, senha: string): Observable<Login> {
-    return this.http.post<Login>(this.URL, { email, senha });
+    return this.http.post<Login>(this.URL + '/login', { email, senha });
   }
 
   getToken(): string {
