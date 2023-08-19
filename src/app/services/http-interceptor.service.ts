@@ -15,11 +15,15 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      setHeaders: {
-        authorization: this.authService.getToken(),
-      }
-    });
+    const token = this.authService.getToken();
+
+    if (token) {
+      req = req.clone({
+        setHeaders: {
+          authorization: token,
+        }
+      });
+    }
 
     return next.handle(req).pipe(
       // Exibir toast automaticamente em caso de erro

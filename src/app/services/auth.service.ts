@@ -23,7 +23,17 @@ export class AuthService extends BaseService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem(this.nameToken);
-    return !this.jwtHelper.isTokenExpired(token || undefined);
+    return !this.isTokenExpired(token);
+  }
+
+  isTokenExpired(token: string): boolean {
+    const isTokenExpired = this.jwtHelper.isTokenExpired(token || undefined);
+
+    if (isTokenExpired) {
+      this.clearToken();
+    }
+
+    return isTokenExpired;
   }
 
   getUsuario(): Usuario {
@@ -48,8 +58,12 @@ export class AuthService extends BaseService {
   }
 
   logout() {
+    this.clearToken();
+    this.router.navigate(['login']);
+  }
+
+  clearToken() {
     localStorage.removeItem(this.nameToken);
     localStorage.removeItem('user');
-    this.router.navigate(['login']);
   }
 }

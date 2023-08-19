@@ -26,7 +26,7 @@ export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements
     apelido: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
     senha: new FormControl(null, Validators.required),
-    perfil: new FormControl(EnumTipoUsuario.USUARIO.nome, Validators.required),
+    perfil: new FormControl(EnumTipoUsuario.USUARIO.id, Validators.required),
     dataNascimento: new FormControl(null, [Validators.required]),
     genero: new FormControl(null, Validators.required)
   });

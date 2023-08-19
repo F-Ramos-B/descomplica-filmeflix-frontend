@@ -5,13 +5,15 @@ import { LoggedOutGuard } from './guards/logged-out.guard';
 import { CadastroComponent } from './pages/public/cadastro/cadastro.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { HomeComponent } from './pages/private/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-/*   {
+  {
     path: '',
     canActivate: [AuthGuard],
     component: HomeComponent
-  }, */
+  },
   {
     path: 'nova-conta',
     canActivate: [LoggedOutGuard],

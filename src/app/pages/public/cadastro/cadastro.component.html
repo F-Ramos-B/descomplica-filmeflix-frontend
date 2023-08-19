@@ -3,7 +3,7 @@
     <form [formGroup]="formulario" (ngSubmit)="validate()">
       <div class="col-12 tela-login">
 
-        <h1 class="text-center text-white">{{ idEdicao ? 'Editar' : 'Cadastrar' }} {{ perfil?.value | tipoUsuario | lowercase}}</h1>
+        <h1 class="text-center">{{ idEdicao ? 'Editar' : 'Cadastrar' }} {{ perfil?.value | tipoUsuario | lowercase}}</h1>
 
         <div class="p-inputgroup p-mb-3">
           <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>

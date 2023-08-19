@@ -14,7 +14,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   /* font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
-  color: #495057;
 }
 
 .container {
@@ -80,9 +79,8 @@ body p-togglebutton.ng-touched.ng-invalid .ui-button {
 }
 
 .tela-login {
-  min-width: 450px;
-  //width: 40vw;
-  max-width: 20vw;
+  min-width: 40vw;
+  max-width: 60vw;
 }
 
 .text-center-table {
