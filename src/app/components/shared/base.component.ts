@@ -1,13 +1,15 @@
-import { ToastService } from './../../services/toast.service';
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { convert } from '@js-joda/core';
 import { PrimeIcons } from 'primeng/api';
+import { Subject } from 'rxjs';
+
+import { ToastService } from './../../services/toast.service';
 
 @Injectable()
 export abstract class BaseComponent implements OnDestroy {
 
   protected readonly PrimeIcons = PrimeIcons;
-
+  protected readonly dateConverter = convert;
   protected readonly ngUnsubscribe$ = new Subject();
 
   protected toastSucesso(detail: string) {

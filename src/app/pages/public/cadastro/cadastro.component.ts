@@ -1,13 +1,14 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalDate } from '@js-joda/core';
 import { SelectItem } from 'primeng/api';
 import { InclusaoBaseComponent } from 'src/app/components/shared/inclusao-base.component';
+import { Usuario } from 'src/app/models/usuario';
 
 import { EnumTipoUsuario } from '../../../enums/enum-tipo-usuario.model';
 import { AdminService } from '../../../services/admin.service';
 import { UsuarioService } from './../../../services/usuario.service';
 import { FormUtils } from './../../../utils/form-utils';
-import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-cadastro',
@@ -17,7 +18,7 @@ import { Usuario } from 'src/app/models/usuario';
 export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements OnInit {
 
   idTipoFixo: number;
-  dataMinima = new Date();
+  dataMinima = this.dateConverter(LocalDate.now().minusYears(12)).toDate();
   tipos: SelectItem<number>[] = EnumTipoUsuario.asSelectItem();
   override isAdmin: boolean = true;
 
