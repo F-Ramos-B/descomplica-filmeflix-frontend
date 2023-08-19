@@ -31,6 +31,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.pipe(filter((e) => e instanceof NavigationEnd), takeUntil(this.ngUnsubscribe$)).subscribe(() => {
       this.usuario = this.authService.getUsuario();
+      console.log(this.usuario);
+
       this.buildMenu();
     });
   }
@@ -43,13 +45,28 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     return EnumTipoUsuario.is.ADMIN(this.usuario?.perfil);
   }
 
+  isUsuario() {
+    return EnumTipoUsuario.is.USUARIO(this.usuario?.perfil);
+  }
+
   buildMenu() {
     this.menuItems = [
       {
-        label: 'Página inicial',
+        label: 'Dashboard',
         icon: 'pi pi-fw pi-home',
         routerLink: ['']
       },
+      {
+        label: 'Filmes',
+        icon: 'pi pi-fw pi-home',
+        items: [...this.buildFilmesPlaylistsMenu('filmes')]
+      },
+      {
+        label: 'Playlists / Séries',
+        icon: 'pi pi-fw pi-list',
+        items: [...this.buildFilmesPlaylistsMenu('playlists')]
+      },
+      this.buildAtoresMenu(),
       {
         label: `Área do ${this.tipoUsuarioPipe.transform(this.usuario?.perfil)}`,
         icon: 'pi pi-fw pi-id-card',
@@ -63,11 +80,60 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     ];
   }
 
+  private buildFilmesPlaylistsMenu(tipo: string): MenuItem[] {
+    return [
+      {
+        label: 'Pesquisar',
+        icon: 'pi pi-fw pi-search',
+        routerLink: [tipo, 'pesquisar']
+      },
+      {
+        label: 'Incluir',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: [tipo, 'incluir']
+      }
+    ];
+  }
+
+  private buildAtoresMenu(): MenuItem {
+
+    const pesquisarAtores = {
+      label: 'Atores',
+      icon: 'pi pi-fw pi-star-fill',
+      routerLink: ['atores', 'pesquisar']
+    };
+
+    if (this.isUsuario()) {
+      return pesquisarAtores;
+    }
+
+    return {
+      label: pesquisarAtores.label,
+      icon: pesquisarAtores.icon,
+      items: [
+        {
+          label: 'Pesquisar',
+          icon: 'pi pi-fw pi-search',
+          routerLink: pesquisarAtores.routerLink
+        },
+        {
+          label: 'Incluir',
+          icon: 'pi pi-fw pi-plus',
+          routerLink: ['atores', 'incluir']
+        }
+      ]
+    };
+  }
+
   private buildAreaMenu(podeIncluir: boolean): MenuItem[] {
     return [
-      this.buildSubMenu('admins', 'pi-user', podeIncluir, EnumTipoUsuario.ADMIN.id),
-      this.buildSubMenu('usuarios', 'pi-user-edit', podeIncluir, EnumTipoUsuario.USUARIO.id),
-      this.buildSubMenu('cursos', 'pi-book', podeIncluir)
+      this.buildSubMenu('admins', 'pi-star', podeIncluir, EnumTipoUsuario.ADMIN.id),
+      this.buildSubMenu('usuarios', 'pi-user', podeIncluir, EnumTipoUsuario.USUARIO.id),
+      {
+        label: 'Minhas avaliações',
+        icon: 'pi pi-fw pi-home',
+        routerLink: ['minhas-avaliacoes']
+      }
     ];
   }
 
