@@ -1,11 +1,14 @@
 import { ToastService } from './../../services/toast.service';
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
+import { PrimeIcons } from 'primeng/api';
 
 @Injectable()
 export abstract class BaseComponent implements OnDestroy {
 
-  protected ngUnsubscribe$ = new Subject();
+  protected readonly PrimeIcons = PrimeIcons;
+
+  protected readonly ngUnsubscribe$ = new Subject();
 
   protected toastSucesso(detail: string) {
     ToastService.getInstance().sucesso(detail);

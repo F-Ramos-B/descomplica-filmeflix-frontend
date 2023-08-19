@@ -53,28 +53,28 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     this.menuItems = [
       {
         label: 'Dashboard',
-        icon: 'pi pi-fw pi-home',
+        icon: this.PrimeIcons.HOME,
         routerLink: ['']
       },
       {
         label: 'Filmes',
-        icon: 'pi pi-fw pi-home',
+        icon: this.PrimeIcons.HOME,
         items: [...this.buildFilmesPlaylistsMenu('filmes')]
       },
       {
         label: 'Playlists / Séries',
-        icon: 'pi pi-fw pi-list',
+        icon: this.PrimeIcons.LIST,
         items: [...this.buildFilmesPlaylistsMenu('playlists')]
       },
       this.buildAtoresMenu(),
       {
         label: `Área do ${this.tipoUsuarioPipe.transform(this.usuario?.perfil)}`,
-        icon: 'pi pi-fw pi-id-card',
+        icon: this.PrimeIcons.ID_CARD,
         items: [...this.buildAreaMenu(this.isAdmin())]
       },
       {
         label: 'Deslogar',
-        icon: 'pi pi-fw pi-sign-out',
+        icon: this.PrimeIcons.SIGN_OUT,
         command: () => this.authService.logout()
       }
     ];
@@ -84,12 +84,12 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     return [
       {
         label: 'Pesquisar',
-        icon: 'pi pi-fw pi-search',
+        icon: this.PrimeIcons.SEARCH,
         routerLink: [tipo, 'pesquisar']
       },
       {
         label: 'Incluir',
-        icon: 'pi pi-fw pi-plus',
+        icon: this.PrimeIcons.PLUS,
         routerLink: [tipo, 'incluir']
       }
     ];
@@ -99,7 +99,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
 
     const pesquisarAtores = {
       label: 'Atores',
-      icon: 'pi pi-fw pi-star-fill',
+      icon: this.PrimeIcons.STAR_FILL,
       routerLink: ['atores', 'pesquisar']
     };
 
@@ -113,12 +113,12 @@ export class HeaderComponent extends BaseComponent implements OnInit {
       items: [
         {
           label: 'Pesquisar',
-          icon: 'pi pi-fw pi-search',
+          icon: this.PrimeIcons.SEARCH,
           routerLink: pesquisarAtores.routerLink
         },
         {
           label: 'Incluir',
-          icon: 'pi pi-fw pi-plus',
+          icon: this.PrimeIcons.PLUS,
           routerLink: ['atores', 'incluir']
         }
       ]
@@ -127,11 +127,11 @@ export class HeaderComponent extends BaseComponent implements OnInit {
 
   private buildAreaMenu(podeIncluir: boolean): MenuItem[] {
     return [
-      this.buildSubMenu('admins', 'pi-star', podeIncluir, EnumTipoUsuario.ADMIN.id),
-      this.buildSubMenu('usuarios', 'pi-user', podeIncluir, EnumTipoUsuario.USUARIO.id),
+      this.buildSubMenu('admins', this.PrimeIcons.STAR, podeIncluir, EnumTipoUsuario.ADMIN.id),
+      this.buildSubMenu('usuarios', this.PrimeIcons.USER, podeIncluir, EnumTipoUsuario.USUARIO.id),
       {
         label: 'Minhas avaliações',
-        icon: 'pi pi-fw pi-home',
+        icon: this.PrimeIcons.BOOK,
         routerLink: ['minhas-avaliacoes']
       }
     ];
@@ -140,13 +140,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   buildSubMenu(nome: string, icon: string, podeIncluir: boolean = true, tipo?: number): MenuItem {
     const menu: MenuItem = {
       label: `${this.titleCasePipe.transform(nome)}`,
-      icon: `pi pi-fw ${icon}`
+      icon
     };
 
     if (podeIncluir) {
       menu.items = [...this.buildSubMenuCrud(nome, tipo)];
     } else {
-      menu.routerLink = [`/${nome}`];
+      menu.routerLink = [nome];
     }
 
     return menu;
@@ -156,13 +156,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     return [
       {
         label: 'Listar',
-        icon: 'pi pi-fw pi-list',
-        routerLink: [`/${nome}`]
+        icon: this.PrimeIcons.LIST,
+        routerLink: [nome]
       },
       {
         label: 'Incluir',
-        icon: 'pi pi-fw pi-plus-circle',
-        routerLink: [`/${nome}/incluir`],
+        icon: this.PrimeIcons.PLUS,
+        routerLink: [nome, 'incluir'],
         state: tipo ? { tipo } : null
       }
     ];
