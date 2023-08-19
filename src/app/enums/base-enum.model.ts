@@ -25,7 +25,7 @@ export abstract class BaseEnum {
     return this.getValues<T>().map((item: Enum<T>) => ({ label: item.descricao, value: item.id }));
   }
 
-  protected static getSelfKeys<T>(clazz: BaseEnum): Iterable<readonly [number, Enum<T>]> {
+  protected static getSelfKeys<T>(clazz: BaseEnum): Iterable<readonly [T, Enum<T>]> {
     const selfKeys = Object.keys(clazz)
       .map(key => {
         const enumItem: Enum<T> = clazz[key] as Enum<T>;
@@ -33,7 +33,7 @@ export abstract class BaseEnum {
       })
       .filter(entry => entry[0] && entry[1]);
 
-    return selfKeys as Iterable<readonly [number, Enum<T>]>;
+    return selfKeys as Iterable<readonly [T, Enum<T>]>;
   }
 
 }
