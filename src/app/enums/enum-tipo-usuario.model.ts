@@ -2,8 +2,8 @@ import { BaseEnum, Enum } from './base-enum.model';
 
 export class EnumTipoUsuario extends BaseEnum implements Enum<number> {
 
-  static readonly ADMIN = new EnumTipoUsuario(1, 'ADMIN', 'Administrador');
-  static readonly USUARIO = new EnumTipoUsuario(2, 'USUARIO', 'Usuário');
+  static readonly ADMIN = new EnumTipoUsuario(1, 'Administrador');
+  static readonly USUARIO = new EnumTipoUsuario(2, 'Usuário');
 
   static readonly values: EnumTipoUsuario[] = [
     EnumTipoUsuario.ADMIN,
@@ -16,6 +16,6 @@ export class EnumTipoUsuario extends BaseEnum implements Enum<number> {
   };
 
   // private to disallow creating other instances of this type
-  private constructor(public readonly id: number, public readonly nome: string, public readonly descricao: string) { super(); }
+  private constructor(public readonly id: number, public readonly descricao: string) { super(); }
 
 }

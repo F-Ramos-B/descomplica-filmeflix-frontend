@@ -8,7 +8,7 @@ import { EnumTipoUsuario } from '../enums/enum-tipo-usuario.model';
 export class TipoUsuarioPipe implements PipeTransform {
 
   transform(value: number): string {
-    return value ? EnumTipoUsuario.valueOf(Number(value)).descricao : null;
+    return value ? EnumTipoUsuario.valueOf(Number(value))?.descricao : null;
   }
 
 }

@@ -6,7 +6,7 @@
         <h1 class="text-center">{{ idEdicao ? 'Editar' : 'Cadastrar' }} {{ perfil?.value | tipoUsuario | lowercase}}</h1>
 
         <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>
+          <span class="p-inputgroup-addon"><em class="pi pi-id-card"></em></span>
           <input type="text" pInputText formControlName="nome" id="tx-nome" placeholder="Nome">
           <app-mensagem-validacao formControlName="nome"></app-mensagem-validacao>
         </div>
@@ -16,7 +16,7 @@
           <app-mensagem-validacao formControlName="apelido"></app-mensagem-validacao>
         </div>
         <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em class="pi pi-user"></em></span>
+          <span class="p-inputgroup-addon"><em class="pi pi-android"></em></span>
           <input type="text" pInputText formControlName="genero" id="tx-genero" placeholder="Gênero">
           <app-mensagem-validacao formControlName="genero"></app-mensagem-validacao>
         </div>

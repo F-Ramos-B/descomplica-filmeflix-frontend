@@ -11,7 +11,7 @@ import { FormUtils } from './../../../utils/form-utils';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent extends BaseComponent implements OnInit {
+export class LoginComponent extends BaseComponent {
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -22,8 +22,6 @@ export class LoginComponent extends BaseComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) { super(); }
-
-  ngOnInit(): void { }
 
   validate() {
     FormUtils.forceValidateForm(this.loginForm, this.login.bind(this));

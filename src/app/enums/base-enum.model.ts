@@ -2,7 +2,6 @@ import { SelectItem } from 'primeng/api';
 
 export interface Enum<T> {
   id: T;
-  nome: string;
   descricao: string;
 }
 
