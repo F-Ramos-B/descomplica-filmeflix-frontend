@@ -19,7 +19,7 @@ export abstract class PrivateBaseComponent extends BaseComponent implements OnDe
   ) {
     super();
     this.usuario = this.authService.getUsuario();
-    this.isAdmin = EnumTipoUsuario.is.ADMIN(this.usuario?.perfil);
+    this.isAdmin = EnumTipoUsuario.ADMIN.id === this.usuario?.perfil;
     this.navigationParams = this.router.getCurrentNavigation()?.extras?.state;
   }
 

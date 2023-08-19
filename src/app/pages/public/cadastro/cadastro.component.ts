@@ -20,7 +20,6 @@ export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements
   idTipoFixo: number;
   dataMinima = this.dateConverter(LocalDate.now().minusYears(12)).toDate();
   tipos: SelectItem<number>[] = EnumTipoUsuario.asSelectItem();
-  override isAdmin: boolean = true;
 
   formulario: FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -55,7 +54,7 @@ export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements
   }
 
   editar() {
-    const isEdicaoAdmin = EnumTipoUsuario.is.ADMIN(this.idTipoFixo);
+    const isEdicaoAdmin = EnumTipoUsuario.ADMIN.id === this.idTipoFixo;
     const service = isEdicaoAdmin ? this.adminService : this.usuarioService;
 
     service.editar(this.idEdicao, this.formulario.value).subscribe(resposta => this.confirmarOperacao(resposta));
@@ -78,7 +77,7 @@ export class CadastroComponent extends InclusaoBaseComponent<Usuario> implements
 
   voltar() {
     if (this.idTipoFixo) {
-      const rota = EnumTipoUsuario.is.ADMIN(this.idTipoFixo) ? 'admin' : 'usuario';
+      const rota = EnumTipoUsuario.ADMIN.id === this.idTipoFixo ? 'admin' : 'usuario';
       this.router.navigate([rota]);
     } else {
       this.router.navigate(['login']);

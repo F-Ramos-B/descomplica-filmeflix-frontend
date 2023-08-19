@@ -42,13 +42,13 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   }
 
   isAdmin() {
-    return EnumTipoUsuario.is.ADMIN(this.usuario?.perfil);
+    return EnumTipoUsuario.ADMIN.id === this.usuario?.perfil;
   }
 
   isUsuario() {
-    return EnumTipoUsuario.is.USUARIO(this.usuario?.perfil);
-  }
+    return EnumTipoUsuario.USUARIO.id === this.usuario?.perfil;
 
+  }
   buildMenu() {
     this.menuItems = [
       {
