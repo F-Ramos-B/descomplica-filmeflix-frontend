@@ -17,6 +17,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { RatingModule } from 'primeng/rating';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { StyleClassModule } from 'primeng/styleclass';
@@ -28,11 +29,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
 import { CadastroComponent } from './pages/public/cadastro/cadastro.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { TipoUsuarioPipe } from './pipes/tipo-usuario.pipe';
+import { AdminService } from './services/admin.service';
+import { FilmeService } from './services/filme.service';
+import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { PlataformaService } from './services/plataforma.service';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -46,7 +52,8 @@ export function tokenGetter() {
     PaginaNaoEncontradaComponent,
     MensagemValidacaoComponent,
     TipoUsuarioPipe,
-    CadastroComponent
+    CadastroComponent,
+    CadastroFilmeComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +85,8 @@ export function tokenGetter() {
     InputTextareaModule,
     CardModule,
     RatingModule,
-    DialogModule
+    DialogModule,
+    MultiSelectModule
   ],
   providers: [
     HttpInterceptorService,
@@ -89,6 +97,10 @@ export function tokenGetter() {
     },
     AuthGuard,
     MessageService,
+    AdminService,
+    GeneroService,
+    PlataformaService,
+    FilmeService
   ],
   bootstrap: [AppComponent]
 })

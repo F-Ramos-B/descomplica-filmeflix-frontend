@@ -37,7 +37,7 @@
         <div class="p-inputgroup p-my-3 p-field">
           <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR"></em></span>
 
-          <p-calendar [maxDate]="dataMinima" [readonlyInput]="true" [defaultDate]="dataMinima" dateFormat="yy-mm-dd" dataType="string" placeholder="Data de nascimento" formControlName="dataNascimento"></p-calendar>
+          <p-calendar [maxDate]="dataMinima" inputId="dt-nascimento" [readonlyInput]="true" [defaultDate]="dataMinima" dateFormat="yy-mm-dd" dataType="string" placeholder="Data de nascimento" formControlName="dataNascimento"></p-calendar>
           <app-mensagem-validacao formControlName="dataNascimento"></app-mensagem-validacao>
         </div>
 

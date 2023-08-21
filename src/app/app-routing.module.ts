@@ -7,12 +7,31 @@ import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { HomeComponent } from './pages/private/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
     component: HomeComponent
+  },
+  {
+    path: 'filmes',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'incluir',
+        component: CadastroFilmeComponent
+      },
+      {
+        path: 'pesquisar',
+        component: CadastroComponent
+      },
+      {
+        path: 'assistir/:id',
+        component: CadastroComponent
+      }
+    ]
   },
   {
     path: 'nova-conta',

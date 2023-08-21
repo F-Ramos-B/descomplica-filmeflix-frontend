@@ -8,6 +8,6 @@ import { Usuario } from '../models/usuario';
 })
 export class AdminService extends CrudService<Usuario> {
 
-  protected override readonly URL: string = 'http://localhost:3000/stefanini/professor';
+  override URL = this.BASE_URL + '/auth';
 
 }

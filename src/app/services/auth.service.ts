@@ -17,7 +17,7 @@ export class AuthService extends BaseService {
   nameToken: string = 'jwttoken';
   usuario: Usuario;
 
-  URL = this.BASE_URL + '/auth';
+  override URL = this.BASE_URL + '/auth';
 
   constructor(private router: Router, protected override http: HttpClient, public jwtHelper: JwtHelperService) { super(http); }
 
