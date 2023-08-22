@@ -2,7 +2,10 @@
   <div class="grid p-fluid">
     <form [formGroup]="loginForm" (ngSubmit)="validate()">
       <div class="col-12 tela-login">
-        <h1 class="text-center">Bem-vindo à Filmeflix!</h1>
+        <section class="text-center">
+          <img src="/assets/logo-filmeflix.png" height="200" alt="logotipo" />
+          <h1>Bem-vindo à Filmeflix!</h1>
+        </section>
         <div class="p-inputgroup p-mb-3">
           <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ENVELOPE"></em></span>
           <input pInputText type="email" formControlName="email" id="tx-email" placeholder="E-mail">
