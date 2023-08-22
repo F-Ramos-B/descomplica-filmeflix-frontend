@@ -1,5 +1,5 @@
 import { BaseCrudEntity } from './base-crud-entity';
 
-export interface Plataforma extends BaseCrudEntity {
+export class Plataforma extends BaseCrudEntity {
   linkPrefixo?: string;
 }

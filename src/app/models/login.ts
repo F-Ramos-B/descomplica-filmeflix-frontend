@@ -1,6 +1,6 @@
 import { Usuario } from './usuario';
 
-export interface Login {
+export class Login {
   usuario: Partial<Usuario>;
   token: string;
   expires: number;

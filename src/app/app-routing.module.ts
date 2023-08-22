@@ -8,6 +8,7 @@ import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontra
 import { HomeComponent } from './pages/private/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
+import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: 'assistir/:id',
-        component: CadastroComponent
+        component: AssistirFilmeComponent
       }
     ]
   },

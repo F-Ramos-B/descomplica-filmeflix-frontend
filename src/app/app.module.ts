@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CSP_NONCE, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,10 +29,12 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir.component';
 import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
 import { CadastroComponent } from './pages/public/cadastro/cadastro.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { SafePipe } from './pipes/safe-html.pipe';
 import { TipoUsuarioPipe } from './pipes/tipo-usuario.pipe';
 import { AdminService } from './services/admin.service';
 import { FilmeService } from './services/filme.service';
@@ -53,7 +55,9 @@ export function tokenGetter() {
     MensagemValidacaoComponent,
     TipoUsuarioPipe,
     CadastroComponent,
-    CadastroFilmeComponent
+    CadastroFilmeComponent,
+    AssistirFilmeComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -100,7 +104,11 @@ export function tokenGetter() {
     AdminService,
     GeneroService,
     PlataformaService,
-    FilmeService
+    FilmeService,
+    {
+      provide: CSP_NONCE,
+      useValue: globalThis.myRandomNonceValue
+    }
   ],
   bootstrap: [AppComponent]
 })

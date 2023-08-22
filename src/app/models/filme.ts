@@ -1,7 +1,7 @@
 import { BaseCrudEntity } from './base-crud-entity';
 import { Plataforma } from './plataforma';
 
-export interface Filme {
+export class Filme {
   id?: number;
   titulo?: string;
   descricao?: string;
@@ -11,6 +11,6 @@ export interface Filme {
   classificacaoIndicativa?: number;
   createdAt?: string;
   updatedAt?: string;
-  generos?: BaseCrudEntity[];
+  generos?: BaseCrudEntity[] = [];
   plataforma?: Plataforma;
 }

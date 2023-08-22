@@ -1,0 +1,56 @@
+<div class="p-grid">
+  <div class="p-col-12 p-text-center">
+    <h1>Sistema de aulas Hackaton Stefanini</h1>
+    <hr />
+    <h2>Artigo do dia: JSON</h2>
+  </div>
+</div>
+<div class="p-grid" *ngIf="filme">
+  <div class="p-col-12">
+    Assistir filme
+    <pre>{{ filme | json }}</pre>
+
+    <span [ngSwitch]="filme?.plataforma?.id">
+      <div *ngSwitchCase="1">
+        <iframe
+          width="560"
+          height="315"
+          [src]="filme.linkExibicao | safe: 'resourceUrl'"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div *ngSwitchCase="2">
+        <div
+          style="
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+          "
+        >
+          <iframe
+            style="
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              left: 0px;
+              top: 0px;
+              overflow: hidden;
+            "
+            frameborder="0"
+            type="text/html"
+            [src]="filme.linkExibicao | safe: 'resourceUrl'"
+            width="100%"
+            height="100%"
+            allowfullscreen
+            title="Dailymotion Video Player"
+          >
+          </iframe>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>

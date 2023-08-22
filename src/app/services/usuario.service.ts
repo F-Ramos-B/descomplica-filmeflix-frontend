@@ -12,7 +12,7 @@ export class UsuarioService extends CrudService<Usuario> {
   override URL = this.BASE_URL + '/auth';
 
   obterPorId(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${URL}/${id}`);
+    return this.http.get<Usuario>(`${this.URL}/${id}`);
   }
 
   override incluirURL(): string {
