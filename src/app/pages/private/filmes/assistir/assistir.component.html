@@ -1,56 +1,118 @@
-<div class="p-grid">
-  <div class="p-col-12 p-text-center">
-    <h1>Sistema de aulas Hackaton Stefanini</h1>
-    <hr />
-    <h2>Artigo do dia: JSON</h2>
-  </div>
-</div>
-<div class="p-grid" *ngIf="filme">
-  <div class="p-col-12">
-    Assistir filme
-    <pre>{{ filme | json }}</pre>
+<section class="b-container pt-3">
+  <div class="grid" *ngIf="filme">
+    <div class="col-12">
 
-    <span [ngSwitch]="filme?.plataforma?.id">
-      <div *ngSwitchCase="1">
-        <iframe
-          width="560"
-          height="315"
-          [src]="filme.linkExibicao | safe: 'resourceUrl'"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div *ngSwitchCase="2">
-        <div
-          style="
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-          "
-        >
-          <iframe
-            style="
-              width: 100%;
-              height: 100%;
-              position: absolute;
-              left: 0px;
-              top: 0px;
-              overflow: hidden;
-            "
-            frameborder="0"
-            type="text/html"
-            [src]="filme.linkExibicao | safe: 'resourceUrl'"
-            width="100%"
-            height="100%"
-            allowfullscreen
-            title="Dailymotion Video Player"
-          >
-          </iframe>
+      <p-card class="text-center" [header]="filme.titulo" [subheader]="filme.generosTexto">
+<!--         <ng-template pTemplate="header">
+            <img alt="Imagem do filme" [src]="filme.linkImagem | safe: 'resourceUrl'" style="width: 20em !important" />
+        </ng-template> -->
+
+
+        <ng-container [ngSwitch]="filme?.plataforma?.id">
+          <div *ngSwitchCase="1">
+            <iframe
+              width="1000"
+              height="755"
+              [src]="filme.linkExibicao | safe: 'resourceUrl'"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div *ngSwitchCase="2">
+            <div
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+              "
+            >
+              <iframe
+                style="
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  left: 0px;
+                  top: 0px;
+                  overflow: hidden;
+                "
+                frameborder="0"
+                type="text/html"
+                [src]="filme.linkExibicao | safe: 'resourceUrl'"
+                width="100%"
+                height="100%"
+                allowfullscreen
+                title="Dailymotion Video Player"
+              >
+              </iframe>
+            </div>
+          </div>
+        </ng-container>
+
+        <hr />
+
+        <div class="grid">
+          <div class="col-2">
+            <p-rating [(ngModel)]="filme.mediaAvaliacoes" [readonly]="true" [cancel]="false"></p-rating>
+          </div>
+          <small class="col-8">Estrelando: {{ filme.atoresTexto }}</small>
+          <small class="col-2"> <i [class]="PrimeIcons.EYE" title="Visualizações"></i> {{ filme.numeroVisualizacoes }}</small>
+
+          <div class="col-12">
+            <p>{{ filme.descricao }}</p>
+          </div>
+
         </div>
-      </div>
-    </span>
+
+        <ng-template pTemplate="footer">
+          <p-tabView [activeIndex]="0">
+            <p-tabPanel header="Avaliações">
+
+
+              <p-panel [toggleable]="true" *ngFor="let avaliacao of filme.avaliacoes">
+                <ng-template pTemplate="header">
+                  <span class="text-primary font-semibold text-xl">
+                    {{ avaliacao.usuario.apelido }} - <p-rating [(ngModel)]="avaliacao.nota" [readonly]="true" [cancel]="false"></p-rating> - ({{ avaliacao.updatedAt }})
+
+                  </span>
+                </ng-template>
+
+                <p>{{ avaliacao.critica }}</p>
+              </p-panel>
+
+            </p-tabPanel>
+            <p-tabPanel [header]="filme.avaliacaoUsuarioLogado ? 'Minha avaliação' : 'Postar avaliação'">
+
+              <div *ngIf="filme.avaliacaoUsuarioLogado as avaliacao">
+                <p-panel>
+                  <ng-template pTemplate="header">
+                    <span class="text-primary font-semibold text-xl">
+                      {{ avaliacao.usuario.apelido }} -
+                      <p-rating [(ngModel)]="avaliacao.nota" [readonly]="true" [cancel]="false"></p-rating> -
+                      ({{ avaliacao.updatedAt }})
+
+                      <i [class]="PrimeIcons.FILE_EDIT + ' cursor-pointer'" title="Editar"></i>
+                    </span>
+
+
+                  </ng-template>
+
+                  <p>{{ avaliacao.critica }}</p>
+                </p-panel>
+              </div>
+
+
+            </p-tabPanel>
+        </p-tabView>
+        </ng-template>
+      </p-card>
+
+
+    </div>
+
   </div>
-</div>
+
+</section>
+

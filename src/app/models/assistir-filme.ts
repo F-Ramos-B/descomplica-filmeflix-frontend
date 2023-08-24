@@ -7,5 +7,8 @@ export class AssistirFilme extends Filme {
   linkExibicao?: string;
   atores?: Ator[] = [];
   avaliacoes?: Avaliacao[] = [];
+  atoresTexto?: string;
+  generosTexto?: string;
+  avaliacaoUsuarioLogado?: Avaliacao;
   mediaAvaliacoes?: number = 0;
 }

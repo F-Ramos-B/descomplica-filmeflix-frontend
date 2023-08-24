@@ -18,10 +18,12 @@ import { MenubarModule } from 'primeng/menubar';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PanelModule } from 'primeng/panel';
 import { RatingModule } from 'primeng/rating';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
 import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -90,7 +92,9 @@ export function tokenGetter() {
     CardModule,
     RatingModule,
     DialogModule,
-    MultiSelectModule
+    MultiSelectModule,
+    TabViewModule,
+    PanelModule
   ],
   providers: [
     HttpInterceptorService,

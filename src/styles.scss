@@ -20,6 +20,34 @@ body {
   height: 100%;
 }
 
+.b-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .b-container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .b-container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .b-container {
+    width: 1170px;
+  }
+}
+.b-container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 /* .card-app-content {
 
   .p-card,

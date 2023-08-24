@@ -5,7 +5,7 @@ export class Filme {
   id?: number;
   titulo?: string;
   descricao?: string;
-  numeroVisualizaoes?: number;
+  numeroVisualizacoes?: number;
   linkImagem?: string;
   linkFilme?: string;
   classificacaoIndicativa?: number;
