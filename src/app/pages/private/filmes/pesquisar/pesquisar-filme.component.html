@@ -3,7 +3,7 @@
     <form [formGroup]="formulario" (ngSubmit)="validate()">
       <div class="col-12 tela-login">
 
-        <h1 class="text-center">{{ idEdicao ? 'Editar' : 'Cadastrar' }} filme</h1>
+        <h1 class="text-center">Pesquisar filme</h1>
 
         <div class="p-inputgroup p-mb-3">
           <span class="p-inputgroup-addon"><em [class]="PrimeIcons.BOOK"></em></span>
@@ -15,21 +15,17 @@
           <textarea rows="5" cols="30" id="tx-descricao" pInputTextarea formControlName="descricao" placeholder="Descrição" maxlength="500"></textarea>
           <app-mensagem-validacao formControlName="descricao"></app-mensagem-validacao>
         </div>
+
         <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.IMAGE"></em></span>
-          <input type="text" pInputText formControlName="linkImagem" id="tx-linkImagem" placeholder="Link de imagem">
-          <app-mensagem-validacao formControlName="linkImagem"></app-mensagem-validacao>
-        </div>
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.VIDEO"></em></span>
-          <input pInputText type="linkFilme" formControlName="linkFilme" id="tx-linkFilme" placeholder="Link / id do filme">
-          <app-mensagem-validacao formControlName="linkFilme"></app-mensagem-validacao>
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_MINUS"></em></span>
+          <p-inputNumber inputId="qt-classificacaoIndicativaMin" formControlName="classificacaoIndicativaMin" placeholder="Classificação indicativa mínima" [min]="0" [max]="18"></p-inputNumber>
+          <app-mensagem-validacao formControlName="classificacaoIndicativaMin"></app-mensagem-validacao>
         </div>
 
         <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.USER"></em></span>
-          <p-inputNumber inputId="qt-classificacaoIndicativa" formControlName="classificacaoIndicativa" placeholder="Classificação indicativa" [min]="0" [max]="18"></p-inputNumber>
-          <app-mensagem-validacao formControlName="classificacaoIndicativa"></app-mensagem-validacao>
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_PLUS"></em></span>
+          <p-inputNumber inputId="qt-classificacaoIndicativaMax" formControlName="classificacaoIndicativaMax" placeholder="Classificação indicativa máxima" [min]="0" [max]="18"></p-inputNumber>
+          <app-mensagem-validacao formControlName="classificacaoIndicativaMax"></app-mensagem-validacao>
         </div>
 
         <ng-container *ngIf="(generos$ | async) as generos">
@@ -52,10 +48,10 @@
 
         <div class="grid">
           <div class="col-6">
-            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.PLUS" type="submit" label="Cadastrar"></p-button>
+            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.SEARCH" type="submit" label="Pesquisar"></p-button>
           </div>
           <div class="col-6">
-            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="voltar()" label="Cancelar"></p-button>
+            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="limpar()" label="Limpar"></p-button>
           </div>
         </div>
       </div>

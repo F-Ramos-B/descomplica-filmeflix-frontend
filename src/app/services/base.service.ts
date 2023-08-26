@@ -14,7 +14,7 @@ export abstract class BaseService {
 
   constructor(protected http: HttpClient) { }
 
-  protected construirQueryParams<T extends object>(params: Exclude<T, any[]>, httpParams: HttpParams = new HttpParams()): HttpParams {
+  protected construirQueryParams<T extends object>(params: T, httpParams: HttpParams = new HttpParams()): HttpParams {
     Object.keys(params).forEach(chave => {
       const valor = params[chave];
 

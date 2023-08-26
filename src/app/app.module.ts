@@ -43,6 +43,7 @@ import { FilmeService } from './services/filme.service';
 import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { PlataformaService } from './services/plataforma.service';
+import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -59,7 +60,8 @@ export function tokenGetter() {
     CadastroComponent,
     CadastroFilmeComponent,
     AssistirFilmeComponent,
-    SafePipe
+    SafePipe,
+    PesquisarFilmeComponent
   ],
   imports: [
     BrowserModule,
