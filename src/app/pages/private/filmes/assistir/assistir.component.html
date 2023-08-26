@@ -1,5 +1,5 @@
 <section class="b-container pt-3">
-  <div class="grid" *ngIf="filme">
+  <div class="grid" *ngIf="(filme$ | async) as filme">
     <div class="col-12">
 
       <p-card class="text-center" [header]="filme.titulo" [subheader]="filme.generosTexto">
@@ -61,7 +61,7 @@
           <small class="col-2"> <i [class]="PrimeIcons.EYE" title="Visualizações"></i> {{ filme.numeroVisualizacoes }}</small>
 
           <div class="col-12">
-            <p>{{ filme.descricao }}</p>
+            <p class="text-justify">{{ filme.descricao }}</p>
           </div>
 
         </div>
@@ -79,17 +79,17 @@
                   </span>
                 </ng-template>
 
-                <p>{{ avaliacao.critica }}</p>
+                <p class="text-justify">{{ avaliacao.critica }}</p>
               </p-panel>
 
             </p-tabPanel>
             <p-tabPanel [header]="filme.avaliacaoUsuarioLogado ? 'Minha avaliação' : 'Postar avaliação'">
 
-              <div *ngIf="filme.avaliacaoUsuarioLogado as avaliacao">
+              <div *ngIf="filme.avaliacaoUsuarioLogado as avaliacao; else postarAvaliacao">
                 <p-panel>
                   <ng-template pTemplate="header">
                     <span class="text-primary font-semibold text-xl">
-                      {{ avaliacao.usuario.apelido }} -
+                      {{ avaliacao.usuario.apelido }} (você) -
                       <p-rating [(ngModel)]="avaliacao.nota" [readonly]="true" [cancel]="false"></p-rating> -
                       ({{ avaliacao.updatedAt }})
 
@@ -99,9 +99,31 @@
 
                   </ng-template>
 
-                  <p>{{ avaliacao.critica }}</p>
+                  <p class="text-justify">{{ avaliacao.critica }}</p>
                 </p-panel>
               </div>
+              <ng-template #postarAvaliacao>
+                <form [formGroup]="formulario" (ngSubmit)="validate()">
+                  <div class="grid">
+                    <div class="col-12 p-inputgroup p-mb-3">
+                      <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
+                      <textarea rows="5" cols="30" id="tx-critica" pInputTextarea formControlName="critica" placeholder="Digite aqui sua avaliação do vídeo" maxlength="500"></textarea>
+                      <app-mensagem-validacao formControlName="critica"></app-mensagem-validacao>
+                    </div>
+
+                    <div class="col-12 md:col-8">
+                      <p-rating formControlName="nota" [cancel]="false"></p-rating>
+                      <div class="col-12">
+                        <app-mensagem-validacao formControlName="nota"></app-mensagem-validacao>
+                      </div>
+                    </div>
+
+                    <div class="col-12 md:col-4">
+                      <p-button styleClass="p-button-raised p-button-success" [icon]="PrimeIcons.PLUS" type="submit" label="Confirmar"></p-button>
+                    </div>
+                  </div>
+                </form>
+              </ng-template>
 
 
             </p-tabPanel>

@@ -1,12 +1,12 @@
 -Login X
 -Cadastro X
 -Dashboard
--Cadastrar filme
+-Cadastrar filme X
 -Cadastrar ator
 -Cadastrar Playlist
 -Pesquisar filmes
--Assistir filme
--Avaliar filme
+-Assistir filme X
+-Avaliar filme X
 
 # DescomplicaFilmeflixFrontend
 
