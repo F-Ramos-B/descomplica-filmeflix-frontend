@@ -1,10 +1,10 @@
 -Login X
 -Cadastro X
--Dashboard
+-Dashboard X
 -Cadastrar filme X
 -Cadastrar ator
 -Cadastrar Playlist
--Pesquisar filmes
+-Pesquisar filmes X
 -Assistir filme X
 -Avaliar filme X
 

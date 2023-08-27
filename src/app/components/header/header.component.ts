@@ -62,11 +62,6 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         items: [...this.buildFilmesPlaylistsMenu('filmes')]
       },
       {
-        label: 'Assistir Teste',
-        icon: this.PrimeIcons.HOME,
-        routerLink: ['filmes', 'assistir', 1]
-      },
-      {
         label: 'Playlists / Séries',
         icon: this.PrimeIcons.LIST,
         items: [...this.buildFilmesPlaylistsMenu('playlists')]

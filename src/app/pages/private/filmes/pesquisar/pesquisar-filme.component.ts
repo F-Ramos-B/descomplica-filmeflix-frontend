@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { BaseComponent } from 'src/app/components/shared/base.component';
 import { ResultadoPesquisaFilme } from 'src/app/models/resultado-pesquisa-filme';
 import { FilmeService } from 'src/app/services/filme.service';
@@ -17,6 +17,7 @@ import { FormUtils } from 'src/app/utils/form-utils';
 })
 export class PesquisarFilmeComponent extends BaseComponent implements OnInit {
 
+  esconderPesquisa = false;
   generos$: Observable<Array<SelectItem<number>>>;
   plataformas$: Observable<Array<SelectItem<number>>>;
   resultados$: Observable<Array<ResultadoPesquisaFilme>>;
@@ -60,10 +61,9 @@ export class PesquisarFilmeComponent extends BaseComponent implements OnInit {
   }
 
   pesquisar() {
-    this.filmeService.pesquisar(this.formulario.value).subscribe(resposta => {
-      console.log(resposta);
-
-    });
+    this.resultados$ = this.filmeService.pesquisar(this.formulario.value).pipe(finalize(() => this.esconderPesquisa = true));
   }
+
+
 
 }

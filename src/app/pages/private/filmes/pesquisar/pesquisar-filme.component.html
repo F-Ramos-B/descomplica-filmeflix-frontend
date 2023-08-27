@@ -1,60 +1,70 @@
-<div class="box">
-  <div class="grid p-fluid">
-    <form [formGroup]="formulario" (ngSubmit)="validate()">
-      <div class="col-12 tela-login">
+<section class="b-container pt-3">
+  <p-card>
 
-        <h1 class="text-center">Pesquisar filme</h1>
+    <div class="grid p-fluid">
+      <section class="col-12">
+        <p-panel header="Pesquisar filme" [toggleable]="true" [(collapsed)]="esconderPesquisa">
+          <form [formGroup]="formulario" (ngSubmit)="validate()">
+            <div class="col-12">
 
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.BOOK"></em></span>
-          <input type="text" pInputText formControlName="titulo" id="tx-titulo" placeholder="Título">
-          <app-mensagem-validacao formControlName="titulo"></app-mensagem-validacao>
-        </div>
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
-          <textarea rows="5" cols="30" id="tx-descricao" pInputTextarea formControlName="descricao" placeholder="Descrição" maxlength="500"></textarea>
-          <app-mensagem-validacao formControlName="descricao"></app-mensagem-validacao>
-        </div>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><em [class]="PrimeIcons.BOOK"></em></span>
+                <input type="text" pInputText formControlName="titulo" id="tx-titulo" placeholder="Título">
+                <app-mensagem-validacao formControlName="titulo"></app-mensagem-validacao>
+              </div>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
+                <textarea rows="5" cols="30" id="tx-descricao" pInputTextarea formControlName="descricao" placeholder="Descrição" maxlength="500"></textarea>
+                <app-mensagem-validacao formControlName="descricao"></app-mensagem-validacao>
+              </div>
 
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_MINUS"></em></span>
-          <p-inputNumber inputId="qt-classificacaoIndicativaMin" formControlName="classificacaoIndicativaMin" placeholder="Classificação indicativa mínima" [min]="0" [max]="18"></p-inputNumber>
-          <app-mensagem-validacao formControlName="classificacaoIndicativaMin"></app-mensagem-validacao>
-        </div>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_MINUS"></em></span>
+                <p-inputNumber inputId="qt-classificacaoIndicativaMin" formControlName="classificacaoIndicativaMin" placeholder="Classificação indicativa mínima" [min]="0" [max]="18"></p-inputNumber>
+                <app-mensagem-validacao formControlName="classificacaoIndicativaMin"></app-mensagem-validacao>
+              </div>
 
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_PLUS"></em></span>
-          <p-inputNumber inputId="qt-classificacaoIndicativaMax" formControlName="classificacaoIndicativaMax" placeholder="Classificação indicativa máxima" [min]="0" [max]="18"></p-inputNumber>
-          <app-mensagem-validacao formControlName="classificacaoIndicativaMax"></app-mensagem-validacao>
-        </div>
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR_PLUS"></em></span>
+                <p-inputNumber inputId="qt-classificacaoIndicativaMax" formControlName="classificacaoIndicativaMax" placeholder="Classificação indicativa máxima" [min]="0" [max]="18"></p-inputNumber>
+                <app-mensagem-validacao formControlName="classificacaoIndicativaMax"></app-mensagem-validacao>
+              </div>
 
-        <ng-container *ngIf="(generos$ | async) as generos">
-          <div class="p-inputgroup p-mb-3">
-            <span class="p-inputgroup-addon"><em [class]="PrimeIcons.USER"></em></span>
-            <p-multiSelect [options]="generos" formControlName="generos" defaultLabel="Gêneros" display="chip"></p-multiSelect>
-            <app-mensagem-validacao formControlName="generos"></app-mensagem-validacao>
-          </div>
-        </ng-container>
+              <ng-container *ngIf="(generos$ | async) as generos">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><em [class]="PrimeIcons.USER"></em></span>
+                  <p-multiSelect [options]="generos" formControlName="generos" defaultLabel="Gêneros" display="chip"></p-multiSelect>
+                  <app-mensagem-validacao formControlName="generos"></app-mensagem-validacao>
+                </div>
+              </ng-container>
 
-        <ng-container  *ngIf="(plataformas$ | async) as plataformas">
-          <div class="p-inputgroup p-mb-3">
-            <span class="p-inputgroup-addon"><em [class]="PrimeIcons.GLOBE"></em></span>
-            <p-dropdown inputId="tp-plataforma" formControlName="plataforma" [options]="plataformas" placeholder="Plataforma"></p-dropdown>
-            <app-mensagem-validacao formControlName="plataforma"></app-mensagem-validacao>
-          </div>
-        </ng-container>
+              <ng-container  *ngIf="(plataformas$ | async) as plataformas">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"><em [class]="PrimeIcons.GLOBE"></em></span>
+                  <p-dropdown inputId="tp-plataforma" formControlName="plataforma" [options]="plataformas" placeholder="Plataforma"></p-dropdown>
+                  <app-mensagem-validacao formControlName="plataforma"></app-mensagem-validacao>
+                </div>
+              </ng-container>
 
-        <hr />
+              <hr />
 
-        <div class="grid">
-          <div class="col-6">
-            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.SEARCH" type="submit" label="Pesquisar"></p-button>
-          </div>
-          <div class="col-6">
-            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="limpar()" label="Limpar"></p-button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+              <div class="grid">
+                <div class="col-6">
+                  <p-button styleClass="p-button-raised" [icon]="PrimeIcons.SEARCH" type="submit" label="Pesquisar"></p-button>
+                </div>
+                <div class="col-6">
+                  <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="limpar()" label="Limpar"></p-button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </p-panel>
+      </section>
+
+      <hr class="col-12 p-0" />
+
+      <app-filmes-resultados [resultados$]="resultados$"></app-filmes-resultados>
+
+    </div>
+  </p-card>
+</section>

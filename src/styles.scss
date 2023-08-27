@@ -26,21 +26,25 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
 @media (min-width: 768px) {
   .b-container {
     width: 750px;
   }
 }
+
 @media (min-width: 992px) {
   .b-container {
     width: 970px;
   }
 }
+
 @media (min-width: 1200px) {
   .b-container {
     width: 1170px;
   }
 }
+
 .b-container-fluid {
   padding-right: 15px;
   padding-left: 15px;
@@ -82,7 +86,10 @@ textarea {
   resize: none;
 }
 
-.p-inputgroup .p-inputtext, .p-fluid .p-inputgroup .p-inputtext, .p-inputgroup .p-inputwrapper, .p-inputgroup .p-inputwrapper>.p-component {
+.p-inputgroup .p-inputtext,
+.p-fluid .p-inputgroup .p-inputtext,
+.p-inputgroup .p-inputwrapper,
+.p-inputgroup .p-inputwrapper>.p-component {
   flex: 1 1 auto;
   width: 100%;
 }
@@ -133,4 +140,13 @@ body p-togglebutton.ng-touched.ng-invalid {
 .row-expand-interior {
   padding: 1rem;
   background-color: lightgray;
+}
+
+.card-titulo-center {
+  .p-card-title {
+    font-size: 1.2rem;
+    border: 1px solid blueviolet;
+    padding: 5px;
+    text-align: center;
+  }
 }

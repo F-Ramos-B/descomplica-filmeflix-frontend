@@ -18,7 +18,7 @@ export class FilmeService extends CrudService<Filme> {
     return this.http.get<AssistirFilme>(`${this.URL}/assistir/${id}`);
   }
 
-  pesquisar(filtro: FiltroPesquisarFilme): Observable<ResultadoPesquisaFilme[]> {
+  pesquisar(filtro: FiltroPesquisarFilme = {}): Observable<ResultadoPesquisaFilme[]> {
     return this.http.get<ResultadoPesquisaFilme[]>(`${this.URL}/pesquisar/`, {
       params: this.construirQueryParams(filtro)
     });

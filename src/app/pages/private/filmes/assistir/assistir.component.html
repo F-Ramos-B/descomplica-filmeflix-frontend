@@ -3,16 +3,11 @@
     <div class="col-12">
 
       <p-card class="text-center" [header]="filme.titulo" [subheader]="filme.generosTexto">
-<!--         <ng-template pTemplate="header">
-            <img alt="Imagem do filme" [src]="filme.linkImagem | safe: 'resourceUrl'" style="width: 20em !important" />
-        </ng-template> -->
-
 
         <ng-container [ngSwitch]="filme?.plataforma?.id">
-          <div *ngSwitchCase="1">
+          <div *ngSwitchCase="1" >
             <iframe
-              width="1000"
-              height="755"
+              class="maximize-player"
               [src]="filme.linkExibicao | safe: 'resourceUrl'"
               title="YouTube video player"
               frameborder="0"
@@ -31,13 +26,12 @@
             >
               <iframe
                 style="
-                  width: 100%;
-                  height: 100%;
                   position: absolute;
                   left: 0px;
                   top: 0px;
                   overflow: hidden;
                 "
+                class="maximize-player"
                 frameborder="0"
                 type="text/html"
                 [src]="filme.linkExibicao | safe: 'resourceUrl'"

@@ -44,6 +44,8 @@ import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { PlataformaService } from './services/plataforma.service';
 import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
+import { FilmesResultadosComponent } from './components/shared/filmes-resultados/filmes-resultados/filmes-resultados.component';
+import { HomeComponent } from './pages/private/home/home.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -61,7 +63,9 @@ export function tokenGetter() {
     CadastroFilmeComponent,
     AssistirFilmeComponent,
     SafePipe,
-    PesquisarFilmeComponent
+    PesquisarFilmeComponent,
+    FilmesResultadosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
