@@ -10,15 +10,13 @@ import { CrudService } from './crud.service';
 })
 export abstract class BaseCrudEntityService<T extends BaseCrudEntity, U = T> extends CrudService<T, U> {
 
-  listarSelectItens(filtro: Partial<T> = {}): Observable<Array<SelectItem<number>>> {
-    return this.http.get<T[]>(this.URL, {
-      params: filtro as any
-    })
-    .pipe(
-      mergeAll(),
-      map(BaseCrudEntity.asSelectItem),
-      toArray()
-    );
+  listarSelectItens(labelKey?: keyof T, valueKey?: keyof T): Observable<Array<SelectItem<number>>> {
+    return this.http.get<T[]>(this.URL)
+      .pipe(
+        mergeAll(),
+        map(entity => BaseCrudEntity.asSelectItem(entity, labelKey, valueKey)),
+        toArray()
+      );
   }
 
 }

@@ -4,14 +4,18 @@ export class BaseCrudEntity {
   id?: number;
   nome?: string;
 
-  static asSelectItem(entity: BaseCrudEntity): SelectItem<number> {
+  static asSelectItem<T extends BaseCrudEntity>(
+    entity: BaseCrudEntity,
+    labelKey: keyof T = 'nome',
+    valueKey: keyof T = 'id'
+  ): SelectItem<number> {
     return {
-      value: entity.id,
-      label: entity.nome
+      value: entity[valueKey as string],
+      label: entity[labelKey as string]
     };
   }
 
-  static asSelectItems(entities: BaseCrudEntity[]): SelectItem<number>[] {
-    return entities.map(this.asSelectItem);
+  static asSelectItems<T extends BaseCrudEntity>(entities: BaseCrudEntity[], labelKey?: keyof T, valueKey?: keyof T): SelectItem<number>[] {
+    return entities.map(entity => this.asSelectItem(entity, labelKey, valueKey));
   }
 }

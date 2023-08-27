@@ -46,6 +46,7 @@ import { PlataformaService } from './services/plataforma.service';
 import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
 import { FilmesResultadosComponent } from './components/shared/filmes-resultados/filmes-resultados/filmes-resultados.component';
 import { HomeComponent } from './pages/private/home/home.component';
+import { AtorService } from './services/ator.service';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -118,7 +119,8 @@ export function tokenGetter() {
     {
       provide: CSP_NONCE,
       useValue: globalThis.myRandomNonceValue
-    }
+    },
+    AtorService,
   ],
   bootstrap: [AppComponent]
 })

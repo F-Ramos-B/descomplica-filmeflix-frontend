@@ -8,6 +8,7 @@ import { FilmeService } from 'src/app/services/filme.service';
 import { GeneroService } from 'src/app/services/genero.service';
 import { PlataformaService } from 'src/app/services/plataforma.service';
 import { FormUtils } from 'src/app/utils/form-utils';
+import { AtorService } from '../../../../../services/ator.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
 
   generos$: Observable<Array<SelectItem<number>>>;
   plataformas$: Observable<Array<SelectItem<number>>>;
+  atores$: Observable<Array<SelectItem<number>>>;
 
   formulario: FormGroup = new FormGroup({
     titulo: new FormControl(null, Validators.required),
@@ -27,6 +29,7 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
     linkFilme: new FormControl(null, Validators.required),
     classificacaoIndicativa: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(18)]),
     generos: new FormControl(null, [Validators.required, Validators.minLength(1)]),
+    atores: new FormControl(null),
     plataforma: new FormControl(null, [Validators.required])
   });
 
@@ -34,6 +37,7 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
     protected override injector: Injector,
     private plataformaService: PlataformaService,
     private generoService: GeneroService,
+    private atorService: AtorService,
     private filmeService: FilmeService
   ) {
     super(injector);
@@ -42,6 +46,7 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
   ngOnInit(): void {
     this.carregarGeneros();
     this.carregarPlataformas();
+    this.carregarAtores();
     this.observarMudancaTipo();
   }
 
@@ -51,6 +56,10 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
 
   carregarPlataformas() {
     this.plataformas$ = this.plataformaService.listarSelectItens();
+  }
+
+  carregarAtores() {
+    this.atores$ = this.atorService.listarSelectItens('textoSelect');
   }
 
   validate() {
