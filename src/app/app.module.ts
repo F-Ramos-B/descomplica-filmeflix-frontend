@@ -29,24 +29,28 @@ import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
+import {
+  FilmesResultadosComponent,
+} from './components/shared/filmes-resultados/filmes-resultados/filmes-resultados.component';
 import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir.component';
-import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
+import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir-filme.component';
+import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro-filme.component';
+import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
+import { HomeComponent } from './pages/private/home/home.component';
+import { AssistirPlaylistComponent } from './pages/private/playlists/assistir/assistir-playlist.component';
+import { CadastroPlaylistComponent } from './pages/private/playlists/cadastro/cadastro-playlist.component';
 import { CadastroComponent } from './pages/public/cadastro/cadastro.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { SafePipe } from './pipes/safe-html.pipe';
 import { TipoUsuarioPipe } from './pipes/tipo-usuario.pipe';
 import { AdminService } from './services/admin.service';
+import { AtorService } from './services/ator.service';
 import { FilmeService } from './services/filme.service';
 import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { PlataformaService } from './services/plataforma.service';
-import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
-import { FilmesResultadosComponent } from './components/shared/filmes-resultados/filmes-resultados/filmes-resultados.component';
-import { HomeComponent } from './pages/private/home/home.component';
-import { AtorService } from './services/ator.service';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -66,7 +70,9 @@ export function tokenGetter() {
     SafePipe,
     PesquisarFilmeComponent,
     FilmesResultadosComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroPlaylistComponent,
+    AssistirPlaylistComponent
   ],
   imports: [
     BrowserModule,

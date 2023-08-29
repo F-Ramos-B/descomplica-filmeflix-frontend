@@ -4,12 +4,11 @@ import { SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { InclusaoBaseComponent } from 'src/app/components/shared/inclusao-base.component';
 import { Filme } from 'src/app/models/filme';
+import { AtorService } from 'src/app/services/ator.service';
 import { FilmeService } from 'src/app/services/filme.service';
 import { GeneroService } from 'src/app/services/genero.service';
 import { PlataformaService } from 'src/app/services/plataforma.service';
 import { FormUtils } from 'src/app/utils/form-utils';
-import { AtorService } from '../../../../../services/ator.service';
-
 
 @Component({
   selector: 'app-cadastro-filme',
@@ -51,15 +50,15 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
   }
 
   carregarGeneros() {
-    this.generos$ = this.generoService.listarSelectItens();
+    this.generos$ = this.generoService.listarTransformSelectItens();
   }
 
   carregarPlataformas() {
-    this.plataformas$ = this.plataformaService.listarSelectItens();
+    this.plataformas$ = this.plataformaService.listarTransformSelectItens();
   }
 
   carregarAtores() {
-    this.atores$ = this.atorService.listarSelectItens('textoSelect');
+    this.atores$ = this.atorService.listarTransformSelectItens('textoSelect');
   }
 
   validate() {

@@ -10,8 +10,8 @@ import { FormUtils } from 'src/app/utils/form-utils';
 
 @Component({
   selector: 'app-assistir-filme',
-  templateUrl: './assistir.component.html',
-  styleUrls: ['./assistir.component.scss']
+  templateUrl: './assistir-filme.component.html',
+  styleUrls: ['./assistir-filme.component.scss']
 })
 export class AssistirFilmeComponent extends BaseComponent implements OnInit {
 

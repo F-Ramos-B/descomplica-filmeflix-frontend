@@ -7,9 +7,10 @@ import { LoginComponent } from './pages/public/login/login.component';
 import { PaginaNaoEncontradaComponent } from './pages/public/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { HomeComponent } from './pages/private/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
-import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro/cadastro-filme.component';
-import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir.component';
+import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir-filme.component';
 import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
+import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro-filme.component';
+import { CadastroPlaylistComponent } from './pages/private/playlists/cadastro/cadastro-playlist.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,24 @@ const routes: Routes = [
       {
         path: 'incluir',
         component: CadastroFilmeComponent
+      },
+      {
+        path: 'pesquisar',
+        component: PesquisarFilmeComponent
+      },
+      {
+        path: 'assistir/:id',
+        component: AssistirFilmeComponent
+      }
+    ]
+  },
+  {
+    path: 'playlists',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'incluir',
+        component: CadastroPlaylistComponent
       },
       {
         path: 'pesquisar',

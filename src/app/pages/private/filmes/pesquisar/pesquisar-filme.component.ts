@@ -45,11 +45,11 @@ export class PesquisarFilmeComponent extends BaseComponent implements OnInit {
   }
 
   carregarGeneros() {
-    this.generos$ = this.generoService.listarSelectItens();
+    this.generos$ = this.generoService.listarTransformSelectItens();
   }
 
   carregarPlataformas() {
-    this.plataformas$ = this.plataformaService.listarSelectItens();
+    this.plataformas$ = this.plataformaService.listarTransformSelectItens();
   }
 
   validate() {
