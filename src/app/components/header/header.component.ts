@@ -66,7 +66,17 @@ export class HeaderComponent extends BaseComponent implements OnInit {
         icon: this.PrimeIcons.LIST,
         items: [...this.buildFilmesPlaylistsMenu('playlists')]
       },
-      this.buildAtoresMenu(),
+      {
+        label: 'Assistir Playlist Teste',
+        icon: this.PrimeIcons.HOME,
+        routerLink: ['playlists', 'assistir', 4]
+      },
+      {
+        label: 'Atores',
+        icon: this.PrimeIcons.STAR_FILL,
+        items: [...this.buildFilmesPlaylistsMenu('atores')]
+      },
+      /* this.buildAtoresMenu(), */
       {
         label: `Área do ${this.tipoUsuarioPipe.transform(this.usuario?.perfil)}`,
         icon: this.PrimeIcons.ID_CARD,

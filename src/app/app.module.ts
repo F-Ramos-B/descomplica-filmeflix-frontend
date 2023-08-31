@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
@@ -51,6 +53,7 @@ import { FilmeService } from './services/filme.service';
 import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { PlataformaService } from './services/plataforma.service';
+import { CadastroAtorComponent } from './pages/private/atores/cadastro/cadastro-ator.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -72,7 +75,8 @@ export function tokenGetter() {
     FilmesResultadosComponent,
     HomeComponent,
     CadastroPlaylistComponent,
-    AssistirPlaylistComponent
+    AssistirPlaylistComponent,
+    CadastroAtorComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +111,9 @@ export function tokenGetter() {
     DialogModule,
     MultiSelectModule,
     TabViewModule,
-    PanelModule
+    PanelModule,
+    DividerModule,
+    AccordionModule
   ],
   providers: [
     HttpInterceptorService,

@@ -13,4 +13,5 @@ export class Filme {
   updatedAt?: string;
   generos?: BaseCrudEntity[] = [];
   plataforma?: Plataforma;
+  dataInclusaoPlaylist?: string;
 }

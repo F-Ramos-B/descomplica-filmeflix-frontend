@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, finalize, switchMap, tap } from 'rxjs';
 import { BaseComponent } from 'src/app/components/shared/base.component';
 import { AssistirFilme } from 'src/app/models/assistir-filme';
 import { AvaliacaoService } from 'src/app/services/avaliacao.service';
 import { FilmeService } from 'src/app/services/filme.service';
+import { PlaylistService } from 'src/app/services/playlist.service';
 import { FormUtils } from 'src/app/utils/form-utils';
 
 @Component({
@@ -17,6 +18,7 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
 
   idFilme: number;
   filme$: Observable<AssistirFilme>;
+  idPlaylistAtual: number;
 
   formulario: FormGroup = new FormGroup({
     nota: new FormControl(null, Validators.required),
@@ -27,6 +29,8 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
   constructor(
     private filmeService: FilmeService,
     private avaliacaoService: AvaliacaoService,
+    private playlistService: PlaylistService,
+    private router: Router,
     private route: ActivatedRoute
   ) {
     super();
@@ -43,6 +47,14 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
           this.idFilme = Number(params.get('id'));
           this.formIdFilme.patchValue(this.idFilme);
           return this.filmeService.assistir(this.idFilme);
+        }),
+        tap(() => {
+          const idFilmeAtual = this.playlistService.idFilmeAtual;
+          const idPlaylistAtual = this.playlistService.idPlaylistAtual;
+
+          if (idPlaylistAtual && this.idFilme == idFilmeAtual) {
+            this.idPlaylistAtual = idPlaylistAtual;
+          }
         })
       );
   }
@@ -56,6 +68,14 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
       this.toastSucesso(resposta.mensagem);
       this.carregarFilme();
     });
+  }
+
+  voltarParaPlaylist() {
+    console.log('idPlaylist', this.idPlaylistAtual);
+
+    if (this.idPlaylistAtual) {
+      this.router.navigate(['playlists', 'assistir', this.idPlaylistAtual]);
+    }
   }
 
   get formIdFilme(): FormControl {

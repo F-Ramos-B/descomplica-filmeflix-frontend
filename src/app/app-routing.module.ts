@@ -11,6 +11,8 @@ import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir
 import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
 import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro-filme.component';
 import { CadastroPlaylistComponent } from './pages/private/playlists/cadastro/cadastro-playlist.component';
+import { AssistirPlaylistComponent } from './pages/private/playlists/assistir/assistir-playlist.component';
+import { CadastroAtorComponent } from './pages/private/atores/cadastro/cadastro-ator.component';
 
 const routes: Routes = [
   {
@@ -50,7 +52,21 @@ const routes: Routes = [
       },
       {
         path: 'assistir/:id',
-        component: AssistirFilmeComponent
+        component: AssistirPlaylistComponent
+      }
+    ]
+  },
+  {
+    path: 'atores',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'incluir',
+        component: CadastroAtorComponent
+      },
+      {
+        path: 'pesquisar',
+        component: PesquisarFilmeComponent
       }
     ]
   },

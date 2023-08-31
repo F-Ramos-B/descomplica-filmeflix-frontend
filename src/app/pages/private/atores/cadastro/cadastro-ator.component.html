@@ -1,0 +1,44 @@
+<div class="box">
+  <div class="grid p-fluid">
+    <form [formGroup]="formulario" (ngSubmit)="validate()">
+      <div class="col-12 tela-login">
+
+        <h1 class="text-center">{{ idEdicao ? 'Editar' : 'Cadastrar' }} ator</h1>
+
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
+          <input type="text" pInputText formControlName="nome" id="tx-nome" placeholder="Nome">
+          <app-mensagem-validacao formControlName="nome"></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
+          <input type="text" pInputText formControlName="sobrenome" id="tx-sobrenome" placeholder="Sobrenome">
+          <app-mensagem-validacao formControlName="sobrenome"></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.USER"></em></span>
+          <textarea rows="5" cols="30" id="tx-biografia" pInputTextarea formControlName="biografia" placeholder="Biografia" maxlength="500"></textarea>
+          <app-mensagem-validacao formControlName="biografia"></app-mensagem-validacao>
+        </div>
+
+        <div class="p-inputgroup p-my-3 p-field">
+          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.CALENDAR"></em></span>
+
+          <p-calendar inputId="dt-nascimento" [readonlyInput]="true" dateFormat="yy-mm-dd" dataType="string" placeholder="Data de nascimento" formControlName="dataNascimento"></p-calendar>
+          <app-mensagem-validacao formControlName="dataNascimento"></app-mensagem-validacao>
+        </div>
+
+        <hr />
+
+        <div class="grid">
+          <div class="col-6">
+            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.PLUS" type="submit" label="Cadastrar"></p-button>
+          </div>
+          <div class="col-6">
+            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="voltar()" label="Cancelar"></p-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

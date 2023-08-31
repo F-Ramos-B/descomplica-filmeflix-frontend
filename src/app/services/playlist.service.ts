@@ -8,6 +8,9 @@ import { CrudService } from './crud.service';
 })
 export class PlaylistService extends CrudService<Playlist> {
 
+  public idPlaylistAtual: number;
+  public idFilmeAtual: number;
+
   override URL = this.BASE_URL + '/playlists';
 
 }
