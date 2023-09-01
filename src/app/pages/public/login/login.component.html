@@ -7,26 +7,62 @@
           <h1>Bem-vindo à Filmeflix!</h1>
         </section>
         <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ENVELOPE"></em></span>
-          <input pInputText type="email" formControlName="email" id="tx-email" placeholder="E-mail">
-          <app-mensagem-validacao formControlName="email" alertType="warn" type="email" errorMessage="E-mail inválido"></app-mensagem-validacao>
-          <app-mensagem-validacao formControlName="email"></app-mensagem-validacao>
+          <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.ENVELOPE"></em
+          ></span>
+          <input
+            pInputText
+            type="email"
+            formControlName="email"
+            id="tx-email"
+            placeholder="E-mail"
+          />
+          <app-mensagem-validacao
+            formControlName="email"
+            alertType="warn"
+            type="email"
+            errorMessage="E-mail inválido"
+          ></app-mensagem-validacao>
+          <app-mensagem-validacao
+            formControlName="email"
+          ></app-mensagem-validacao>
         </div>
 
         <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.LOCK"></em></span>
-          <input type="password" formControlName="senha" pInputText id="pwd-senha" placeholder="Senha">
-          <app-mensagem-validacao formControlName="senha"></app-mensagem-validacao>
+          <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.LOCK"></em
+          ></span>
+          <input
+            type="password"
+            formControlName="senha"
+            pInputText
+            id="pwd-senha"
+            placeholder="Senha"
+          />
+          <app-mensagem-validacao
+            formControlName="senha"
+          ></app-mensagem-validacao>
         </div>
 
         <hr />
 
         <div class="grid">
           <div class="col-12 md:col-6">
-            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.SIGN_IN" type="submit" label="Logar"></p-button>
+            <p-button
+              styleClass="p-button-raised"
+              [icon]="PrimeIcons.SIGN_IN"
+              type="submit"
+              label="Logar"
+            ></p-button>
           </div>
           <div class="col-12 md:col-6">
-            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.USER_PLUS" [routerLink]="['/', 'nova-conta']" label="Cadastrar"></p-button>
+            <p-button
+              type="button"
+              styleClass="p-button-raised p-button-secondary"
+              [icon]="PrimeIcons.USER_PLUS"
+              [routerLink]="['/', 'nova-conta']"
+              label="Cadastrar"
+            ></p-button>
           </div>
         </div>
       </div>

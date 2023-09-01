@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, finalize, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { BaseComponent } from 'src/app/components/shared/base.component';
 import { AssistirFilme } from 'src/app/models/assistir-filme';
+import { Avaliacao } from 'src/app/models/avaliacao';
 import { AvaliacaoService } from 'src/app/services/avaliacao.service';
 import { FilmeService } from 'src/app/services/filme.service';
 import { PlaylistService } from 'src/app/services/playlist.service';
-import { FormUtils } from 'src/app/utils/form-utils';
 
 @Component({
   selector: 'app-assistir-filme',
@@ -19,12 +19,6 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
   idFilme: number;
   filme$: Observable<AssistirFilme>;
   idPlaylistAtual: number;
-
-  formulario: FormGroup = new FormGroup({
-    nota: new FormControl(null, Validators.required),
-    critica: new FormControl(null, [Validators.required, Validators.maxLength(500)]),
-    idFilme: new FormControl(null)
-  });
 
   constructor(
     private filmeService: FilmeService,
@@ -45,7 +39,6 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
       .pipe(
         switchMap(params => {
           this.idFilme = Number(params.get('id'));
-          this.formIdFilme.patchValue(this.idFilme);
           return this.filmeService.assistir(this.idFilme);
         }),
         tap(() => {
@@ -59,12 +52,8 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
       );
   }
 
-  validate() {
-    FormUtils.forceValidateForm(this.formulario, this.cadastrar.bind(this));
-  }
-
-  cadastrar() {
-    this.avaliacaoService.incluir(this.formulario.value).subscribe(resposta => {
+  cadastrar(novaAvaliacao: Avaliacao) {
+    this.avaliacaoService.incluir(novaAvaliacao).subscribe(resposta => {
       this.toastSucesso(resposta.mensagem);
       this.carregarFilme();
     });
@@ -76,10 +65,6 @@ export class AssistirFilmeComponent extends BaseComponent implements OnInit {
     if (this.idPlaylistAtual) {
       this.router.navigate(['playlists', 'assistir', this.idPlaylistAtual]);
     }
-  }
-
-  get formIdFilme(): FormControl {
-    return this.formulario.get('idFilme') as FormControl;
   }
 
 }

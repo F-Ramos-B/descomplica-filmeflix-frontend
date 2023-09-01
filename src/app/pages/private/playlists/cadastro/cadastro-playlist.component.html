@@ -2,29 +2,71 @@
   <div class="grid p-fluid">
     <form [formGroup]="formulario" (ngSubmit)="validate()">
       <div class="col-12 tela-login">
+        <h1 class="text-center">
+          {{ idEdicao ? "Editar" : "Cadastrar" }} playlist
+        </h1>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.BOOK"></em
+          ></span>
+          <input
+            type="text"
+            pInputText
+            formControlName="nome"
+            id="tx-nome"
+            placeholder="Título"
+          />
+          <app-mensagem-validacao
+            formControlName="nome"
+          ></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.ID_CARD"></em
+          ></span>
+          <textarea
+            rows="5"
+            cols="30"
+            id="tx-descricao"
+            pInputTextarea
+            formControlName="descricao"
+            placeholder="Descrição"
+            maxlength="500"
+          ></textarea>
+          <app-mensagem-validacao
+            formControlName="descricao"
+          ></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.IMAGE"></em
+          ></span>
+          <input
+            type="text"
+            pInputText
+            formControlName="linkImagem"
+            id="tx-linkImagem"
+            placeholder="Link de imagem"
+          />
+          <app-mensagem-validacao
+            formControlName="linkImagem"
+          ></app-mensagem-validacao>
+        </div>
 
-        <h1 class="text-center">{{ idEdicao ? 'Editar' : 'Cadastrar' }} playlist</h1>
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.BOOK"></em></span>
-          <input type="text" pInputText formControlName="nome" id="tx-nome" placeholder="Título">
-          <app-mensagem-validacao formControlName="nome"></app-mensagem-validacao>
-        </div>
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.ID_CARD"></em></span>
-          <textarea rows="5" cols="30" id="tx-descricao" pInputTextarea formControlName="descricao" placeholder="Descrição" maxlength="500"></textarea>
-          <app-mensagem-validacao formControlName="descricao"></app-mensagem-validacao>
-        </div>
-        <div class="p-inputgroup p-mb-3">
-          <span class="p-inputgroup-addon"><em [class]="PrimeIcons.IMAGE"></em></span>
-          <input type="text" pInputText formControlName="linkImagem" id="tx-linkImagem" placeholder="Link de imagem">
-          <app-mensagem-validacao formControlName="linkImagem"></app-mensagem-validacao>
-        </div>
-
-        <ng-container *ngIf="(filmes$ | async) as filmes">
+        <ng-container *ngIf="filmes$ | async as filmes">
           <div class="p-inputgroup p-mb-3">
-            <span class="p-inputgroup-addon"><em [class]="PrimeIcons.TAGS"></em></span>
-            <p-multiSelect [options]="filmes" formControlName="filmes" defaultLabel="Filmes" display="chip"></p-multiSelect>
-            <app-mensagem-validacao formControlName="filmes"></app-mensagem-validacao>
+            <span class="p-inputgroup-addon"
+              ><em [class]="PrimeIcons.TAGS"></em
+            ></span>
+            <p-multiSelect
+              [options]="filmes"
+              formControlName="filmes"
+              defaultLabel="Filmes"
+              display="chip"
+            ></p-multiSelect>
+            <app-mensagem-validacao
+              formControlName="filmes"
+            ></app-mensagem-validacao>
           </div>
         </ng-container>
 
@@ -32,10 +74,21 @@
 
         <div class="grid">
           <div class="col-6">
-            <p-button styleClass="p-button-raised" [icon]="PrimeIcons.PLUS" type="submit" label="Cadastrar"></p-button>
+            <p-button
+              styleClass="p-button-raised"
+              [icon]="PrimeIcons.PLUS"
+              type="submit"
+              label="Cadastrar"
+            ></p-button>
           </div>
           <div class="col-6">
-            <p-button type="button" styleClass="p-button-raised p-button-secondary" [icon]="PrimeIcons.TIMES_CIRCLE" (onClick)="voltar()" label="Cancelar"></p-button>
+            <p-button
+              type="button"
+              styleClass="p-button-raised p-button-secondary"
+              [icon]="PrimeIcons.TIMES_CIRCLE"
+              (onClick)="voltar()"
+              label="Cancelar"
+            ></p-button>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ResultadoPesquisaFilme } from 'src/app/models/resultado-pesquisa-filme';
 
-import { BaseComponent } from '../../base.component';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-filmes-resultados',

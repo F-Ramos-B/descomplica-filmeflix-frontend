@@ -1,0 +1,96 @@
+<p-tabView [activeIndex]="0" *ngIf="idFilme || idPlaylist">
+  <p-tabPanel header="Avaliações">
+    <section *ngIf="avaliacoes?.length; else nenhumaAvaliacao">
+      <p-panel [toggleable]="true" *ngFor="let avaliacao of avaliacoes">
+        <ng-template pTemplate="header">
+          <span class="text-primary font-semibold text-xl">
+            {{ avaliacao.usuario.apelido }} -
+            <p-rating
+              [(ngModel)]="avaliacao.nota"
+              [readonly]="true"
+              [cancel]="false"
+            ></p-rating>
+            - ({{ avaliacao.updatedAt }})
+          </span>
+        </ng-template>
+
+        <p class="text-justify">{{ avaliacao.critica }}</p>
+      </p-panel>
+    </section>
+    <ng-template #nenhumaAvaliacao>
+      <section class="text-center">
+        <h4>
+          Nenhuma avaliação de outros usuários para
+          {{ idFilme ? "este filme" : "esta playlist" }}.
+        </h4>
+      </section>
+    </ng-template>
+  </p-tabPanel>
+  <p-tabPanel
+    [header]="avaliacaoUsuarioLogado ? 'Minha avaliação' : 'Postar avaliação'"
+  >
+    <div *ngIf="avaliacaoUsuarioLogado as avaliacao; else postarAvaliacao">
+      <p-panel>
+        <ng-template pTemplate="header">
+          <span class="text-primary font-semibold text-xl">
+            {{ avaliacao.usuario.apelido }} (você) -
+            <p-rating
+              [(ngModel)]="avaliacao.nota"
+              [readonly]="true"
+              [cancel]="false"
+            ></p-rating>
+            - ({{ avaliacao.updatedAt }})
+
+            <i
+              [class]="PrimeIcons.FILE_EDIT + ' cursor-pointer'"
+              title="Editar"
+            ></i>
+          </span>
+        </ng-template>
+
+        <p class="text-justify">{{ avaliacao.critica }}</p>
+      </p-panel>
+    </div>
+    <ng-template #postarAvaliacao>
+      <form [formGroup]="formulario" (ngSubmit)="validate()">
+        <div class="grid">
+          <div class="col-12 p-inputgroup p-mb-3">
+            <span class="p-inputgroup-addon"
+              ><em [class]="PrimeIcons.ID_CARD"></em
+            ></span>
+            <textarea
+              rows="5"
+              cols="30"
+              id="tx-critica"
+              pInputTextarea
+              formControlName="critica"
+              placeholder="Digite aqui sua avaliação do vídeo"
+              maxlength="2048"
+            ></textarea>
+            <app-mensagem-validacao
+              formControlName="critica"
+            ></app-mensagem-validacao>
+          </div>
+
+          <div class="col-12 md:col-8">
+            <p-rating formControlName="nota" [cancel]="false"></p-rating>
+            <div class="col-12">
+              <app-mensagem-validacao
+                formControlName="nota"
+              ></app-mensagem-validacao>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-4">
+            <p-button
+              styleClass="p-button-raised p-button-success"
+              [icon]="PrimeIcons.PLUS"
+              type="submit"
+              label="Confirmar"
+            ></p-button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </p-tabPanel>
+</p-tabView>

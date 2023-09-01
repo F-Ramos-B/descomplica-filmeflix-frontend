@@ -31,11 +31,10 @@ import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import {
-  FilmesResultadosComponent,
-} from './components/shared/filmes-resultados/filmes-resultados/filmes-resultados.component';
+import { FilmesResultadosComponent } from './components/shared/filmes-resultados/filmes-resultados.component';
 import { MensagemValidacaoComponent } from './components/shared/mensagem-validacao/mensagem-validacao.component';
 import { AuthGuard } from './guards/auth.guard';
+import { CadastroAtorComponent } from './pages/private/atores/cadastro/cadastro-ator.component';
 import { AssistirFilmeComponent } from './pages/private/filmes/assistir/assistir-filme.component';
 import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro-filme.component';
 import { PesquisarFilmeComponent } from './pages/private/filmes/pesquisar/pesquisar-filme.component';
@@ -53,7 +52,7 @@ import { FilmeService } from './services/filme.service';
 import { GeneroService } from './services/genero.service';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { PlataformaService } from './services/plataforma.service';
-import { CadastroAtorComponent } from './pages/private/atores/cadastro/cadastro-ator.component';
+import { AvaliacoesComponent } from './components/shared/avaliacoes/avaliacoes.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwttoken');
@@ -76,7 +75,8 @@ export function tokenGetter() {
     HomeComponent,
     CadastroPlaylistComponent,
     AssistirPlaylistComponent,
-    CadastroAtorComponent
+    CadastroAtorComponent,
+    AvaliacoesComponent
   ],
   imports: [
     BrowserModule,

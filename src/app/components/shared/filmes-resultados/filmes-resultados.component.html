@@ -1,11 +1,21 @@
-<section *ngIf="(resultados$ | async) as resultados" class="col-12">
+<section *ngIf="resultados$ | async as resultados" class="col-12">
   <div class="grid">
-    <div class="col-12 md:col-4 cursor-pointer" *ngFor="let resultado of resultados" [title]="'Clique para assistir ' + resultado.titulo" (click)="assistirFilme(resultado.id)">
-
-      <p-card [header]="resultado.titulo" styleClass="bg-purple-900 border-solid border-purple-600 card-titulo-center">
+    <div
+      class="col-12 md:col-4 cursor-pointer"
+      *ngFor="let resultado of resultados"
+      [title]="'Clique para assistir ' + resultado.titulo"
+      (click)="assistirFilme(resultado.id)"
+    >
+      <p-card
+        [header]="resultado.titulo"
+        styleClass="bg-purple-900 border-solid border-purple-600 card-titulo-center"
+      >
         <ng-template pTemplate="header">
           <div>
-            <img alt="Imagem do filme" [src]="resultado.linkImagem | safe: 'resourceUrl'" />
+            <img
+              alt="Imagem do filme"
+              [src]="resultado.linkImagem | safe : 'resourceUrl'"
+            />
           </div>
         </ng-template>
 
@@ -15,7 +25,11 @@
               <small>{{ resultado.numeroVisualizacoes }} visualizações</small>
             </div>
             <div class="col-12 md:col-6">
-              <p-rating [(ngModel)]="resultado.mediaAvaliacoes" [readonly]="true" [cancel]="false"></p-rating>
+              <p-rating
+                [(ngModel)]="resultado.mediaAvaliacoes"
+                [readonly]="true"
+                [cancel]="false"
+              ></p-rating>
             </div>
           </div>
         </ng-template>
@@ -29,8 +43,7 @@
             <small>Adicionado em: {{ resultado.createdAt }}</small>
           </div>
         </ng-template>
-    </p-card>
-
+      </p-card>
     </div>
   </div>
 </section>

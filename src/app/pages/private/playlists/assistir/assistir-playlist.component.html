@@ -1,7 +1,29 @@
 <section class="b-container pt-3">
   <div class="grid" *ngIf="playlist$ | async as playlist">
     <div class="col-12">
-      <p-card class="text-center" [header]="playlist.nome" [subheader]="'Atualizado em: ' + playlist.updatedAt">
+      <p-card
+        class="text-center"
+        [header]="playlist.nome"
+        [subheader]="'Atualizado em: ' + playlist.updatedAt"
+      >
+        <div class="grid">
+          <div class="col-12">
+            <img [src]="playlist.linkImagem | safe : 'resourceUrl'" width="100%" alt="" />
+          </div>
+          <div class="col-12">
+            <p-rating
+            [(ngModel)]="playlist.mediaAvaliacoes"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
+          </div>
+          <div class="col-12 text-justify px-5">
+            {{ playlist.descricao }}
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+
         <p-accordion class="w-full" [activeIndex]="activeIndex">
           <p-accordionTab *ngFor="let filme of playlist.filmes">
             <ng-template pTemplate="header">
@@ -40,107 +62,12 @@
         </p-accordion>
 
         <ng-template pTemplate="footer">
-          <p-tabView [activeIndex]="0">
-            <p-tabPanel header="Avaliações">
-              <p-panel
-                [toggleable]="true"
-                *ngFor="let avaliacao of playlist.avaliacoes"
-              >
-                <ng-template pTemplate="header">
-                  <span class="text-primary font-semibold text-xl">
-                    {{ avaliacao.usuario.apelido }} -
-                    <p-rating
-                      [(ngModel)]="avaliacao.nota"
-                      [readonly]="true"
-                      [cancel]="false"
-                    ></p-rating>
-                    - ({{ avaliacao.updatedAt }})
-                  </span>
-                </ng-template>
-
-                <p class="text-justify">{{ avaliacao.critica }}</p>
-              </p-panel>
-            </p-tabPanel>
-            <p-tabPanel
-              [header]="
-                playlist.avaliacaoUsuarioLogado
-                  ? 'Minha avaliação'
-                  : 'Postar avaliação'
-              "
-            >
-              <div
-                *ngIf="
-                  playlist.avaliacaoUsuarioLogado as avaliacao;
-                  else postarAvaliacao
-                "
-              >
-                <p-panel>
-                  <ng-template pTemplate="header">
-                    <span class="text-primary font-semibold text-xl">
-                      {{ avaliacao.usuario.apelido }} (você) -
-                      <p-rating
-                        [(ngModel)]="avaliacao.nota"
-                        [readonly]="true"
-                        [cancel]="false"
-                      ></p-rating>
-                      - ({{ avaliacao.updatedAt }})
-
-                      <i
-                        [class]="PrimeIcons.FILE_EDIT + ' cursor-pointer'"
-                        title="Editar"
-                      ></i>
-                    </span>
-                  </ng-template>
-
-                  <p class="text-justify">{{ avaliacao.critica }}</p>
-                </p-panel>
-              </div>
-              <ng-template #postarAvaliacao>
-                <form [formGroup]="formulario" (ngSubmit)="validate()">
-                  <div class="grid">
-                    <div class="col-12 p-inputgroup p-mb-3">
-                      <span class="p-inputgroup-addon"
-                        ><em [class]="PrimeIcons.ID_CARD"></em
-                      ></span>
-                      <textarea
-                        rows="5"
-                        cols="30"
-                        id="tx-critica"
-                        pInputTextarea
-                        formControlName="critica"
-                        placeholder="Digite aqui sua avaliação do vídeo"
-                        maxlength="500"
-                      ></textarea>
-                      <app-mensagem-validacao
-                        formControlName="critica"
-                      ></app-mensagem-validacao>
-                    </div>
-
-                    <div class="col-12 md:col-8">
-                      <p-rating
-                        formControlName="nota"
-                        [cancel]="false"
-                      ></p-rating>
-                      <div class="col-12">
-                        <app-mensagem-validacao
-                          formControlName="nota"
-                        ></app-mensagem-validacao>
-                      </div>
-                    </div>
-
-                    <div class="col-12 md:col-4">
-                      <p-button
-                        styleClass="p-button-raised p-button-success"
-                        [icon]="PrimeIcons.PLUS"
-                        type="submit"
-                        label="Confirmar"
-                      ></p-button>
-                    </div>
-                  </div>
-                </form>
-              </ng-template>
-            </p-tabPanel>
-          </p-tabView>
+          <app-avaliacoes
+            [avaliacoes]="playlist.avaliacoes"
+            [idPlaylist]="playlist.id"
+            [avaliacaoUsuarioLogado]="playlist.avaliacaoUsuarioLogado"
+            (onAvaliacaoPostada)="cadastrar($event)"
+          ></app-avaliacoes>
         </ng-template>
       </p-card>
     </div>

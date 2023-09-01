@@ -11,6 +11,7 @@ export class Playlist {
   filmes?: Filme[] = [];
   avaliacoes?: Avaliacao[] = [];
   avaliacaoUsuarioLogado: Avaliacao;
+  mediaAvaliacoes?: number;
   criador?: Usuario;
   createdAt?: string;
   updatedAt?: string;
