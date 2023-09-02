@@ -13,6 +13,7 @@ import { CadastroFilmeComponent } from './pages/private/filmes/cadastro/cadastro
 import { CadastroPlaylistComponent } from './pages/private/playlists/cadastro/cadastro-playlist.component';
 import { AssistirPlaylistComponent } from './pages/private/playlists/assistir/assistir-playlist.component';
 import { CadastroAtorComponent } from './pages/private/atores/cadastro/cadastro-ator.component';
+import { ListarPlaylistComponent } from './pages/private/playlists/listar/listar-playlist.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,7 @@ const routes: Routes = [
       },
       {
         path: 'pesquisar',
-        component: PesquisarFilmeComponent
+        component: ListarPlaylistComponent
       },
       {
         path: 'assistir/:id',
