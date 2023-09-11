@@ -35,7 +35,7 @@
         </ng-template>
 
         <div class="text-justify">
-          <small>{{ resultado.descricao }}</small>
+          <small>{{ resultado.descricao | truncate: 500 }}</small>
         </div>
 
         <ng-template pTemplate="footer">
