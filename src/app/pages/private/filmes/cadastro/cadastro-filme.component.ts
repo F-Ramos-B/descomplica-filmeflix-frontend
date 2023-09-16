@@ -27,8 +27,8 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
     linkImagem: new FormControl(null, Validators.required),
     linkFilme: new FormControl(null, Validators.required),
     classificacaoIndicativa: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(18)]),
-    generos: new FormControl(null, [Validators.required, Validators.minLength(1)]),
-    atores: new FormControl(null),
+    generos: new FormControl([], [Validators.required, Validators.minLength(1)]),
+    atores: new FormControl([]),
     plataforma: new FormControl(null, [Validators.required])
   });
 

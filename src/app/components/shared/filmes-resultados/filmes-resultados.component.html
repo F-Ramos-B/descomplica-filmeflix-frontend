@@ -12,7 +12,7 @@
       >
         <ng-template pTemplate="header">
           <div>
-            <img
+            <img class="imagem-filme"
               alt="Imagem do filme"
               [src]="resultado.linkImagem | safe : 'resourceUrl'"
             />
@@ -35,7 +35,7 @@
         </ng-template>
 
         <div class="text-justify">
-          <small>{{ resultado.descricao | truncate: 500 }}</small>
+          <small>{{ resultado.descricao | truncate: 400 }}</small>
         </div>
 
         <ng-template pTemplate="footer">
