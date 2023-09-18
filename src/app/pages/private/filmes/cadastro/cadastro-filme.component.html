@@ -23,6 +23,21 @@
         </div>
         <div class="p-inputgroup p-mb-3">
           <span class="p-inputgroup-addon"
+            ><em [class]="PrimeIcons.CALENDAR"></em
+          ></span>
+          <p-inputNumber
+            inputId="qt-ano"
+            formControlName="anoPublicacao"
+            placeholder="Ano de publicação"
+            [showButtons]="true"
+          >
+          </p-inputNumber>
+          <app-mensagem-validacao
+            formControlName="titulo"
+          ></app-mensagem-validacao>
+        </div>
+        <div class="p-inputgroup p-mb-3">
+          <span class="p-inputgroup-addon"
             ><em [class]="PrimeIcons.ID_CARD"></em
           ></span>
           <textarea

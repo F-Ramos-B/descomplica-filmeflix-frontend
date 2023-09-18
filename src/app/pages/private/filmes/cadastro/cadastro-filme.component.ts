@@ -23,6 +23,7 @@ export class CadastroFilmeComponent extends InclusaoBaseComponent<Filme> impleme
 
   formulario: FormGroup = new FormGroup({
     titulo: new FormControl(null, Validators.required),
+    anoPublicacao: new FormControl(null, Validators.required),
     descricao: new FormControl(null, Validators.required),
     linkImagem: new FormControl(null, Validators.required),
     linkFilme: new FormControl(null, Validators.required),

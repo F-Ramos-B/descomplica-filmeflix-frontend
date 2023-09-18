@@ -4,6 +4,8 @@ import { Plataforma } from './plataforma';
 export class Filme {
   id?: number;
   titulo?: string;
+  anoPublicacao?: number;
+  tituloAnoPublicacao?: string;
   descricao?: string;
   numeroVisualizacoes?: number;
   linkImagem?: string;
